@@ -8,18 +8,19 @@ void Canvas::paintEvent(QPaintEvent * e){
     QPainter painter(this);
     QPen pen = QPen(currentColor, 2);
     painter.setPen(pen);
-    if (startPoint != endPoint) {
-        painter.drawLine(startPoint, endPoint);
+    for (auto line :savedLines){
+        painter.drawLine(line->startPoint, line->endPoint);
+
     }
 }
 
 void Canvas::mousePressEvent(QMouseEvent* e){
     if (e->button() == Qt::LeftButton) {
-        Line * l = new Line;
-        l->startPoint = e->pos();
-        l->endPoint = e->pos();
-        l->color = currentColor;
-        savedLines.push_back(l);
+        currentLine = new Line();
+        currentLine->startPoint = e->pos();
+        currentLine->endPoint = e->pos();
+        currentLine->startPoint = e->pos();
+        currentLine->color = currentColor;
         drawing = true;
         update();
     }
@@ -27,16 +28,17 @@ void Canvas::mousePressEvent(QMouseEvent* e){
 
 void Canvas::mouseMoveEvent(QMouseEvent *e) {
     if (drawing) {
-        l->endPoint = e->pos();
+        currentLine->endPoint = e->pos();
         update();
     }
 }
 
 void Canvas::mouseReleaseEvent(QMouseEvent *e) {
     if (e->button() == Qt::LeftButton && drawing) {
-        endPoint = e->pos();
+        currentLine->endPoint = e->pos();
         drawing = false;
         update();
+        savedLines.push_back(currentLine);
     }
 }
 

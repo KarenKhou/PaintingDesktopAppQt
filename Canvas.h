@@ -26,6 +26,7 @@ protected:
     void mouseReleaseEvent(QMouseEvent *e) override;
 
 private:
+    Line * currentLine;
     QVector<Line * > savedLines;
     bool drawing;
     QColor currentColor;
