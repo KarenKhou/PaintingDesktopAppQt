@@ -243,6 +243,7 @@ Makefile: ..\..\paintKarenELKHOURY.pro E:\qt\6.5.3\msvc2019_64\mkspecs\win32-msv
 		E:\qt\6.5.3\msvc2019_64\lib\Qt6Core.prl \
 		E:\qt\6.5.3\msvc2019_64\lib\Qt6EntryPoint.prl \
 		E:\qt\6.5.3\msvc2019_64\mkspecs\features\build_pass.prf \
+		..\..\icons\icons.qrc \
 		E:\qt\6.5.3\msvc2019_64\lib\Qt6Widgetsd.prl \
 		E:\qt\6.5.3\msvc2019_64\lib\Qt6Guid.prl \
 		E:\qt\6.5.3\msvc2019_64\lib\Qt6Cored.prl \
@@ -407,6 +408,7 @@ E:\qt\6.5.3\msvc2019_64\lib\Qt6Gui.prl:
 E:\qt\6.5.3\msvc2019_64\lib\Qt6Core.prl:
 E:\qt\6.5.3\msvc2019_64\lib\Qt6EntryPoint.prl:
 E:\qt\6.5.3\msvc2019_64\mkspecs\features\build_pass.prf:
+..\..\icons\icons.qrc:
 E:\qt\6.5.3\msvc2019_64\lib\Qt6Widgetsd.prl:
 E:\qt\6.5.3\msvc2019_64\lib\Qt6Guid.prl:
 E:\qt\6.5.3\msvc2019_64\lib\Qt6Cored.prl:

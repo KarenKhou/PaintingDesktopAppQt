@@ -52,10 +52,14 @@ OBJECTS_DIR   = release
 
 SOURCES       = ..\..\Canvas.cpp \
 		..\..\main.cpp \
-		..\..\mainwindow.cpp release\moc_mainwindow.cpp
+		..\..\mainwindow.cpp release\qrc_icons.cpp \
+		release\moc_Canvas.cpp \
+		release\moc_mainwindow.cpp
 OBJECTS       = release\Canvas.obj \
 		release\main.obj \
 		release\mainwindow.obj \
+		release\qrc_icons.obj \
+		release\moc_Canvas.obj \
 		release\moc_mainwindow.obj
 
 DIST          =  ..\..\Canvas.h \
@@ -138,7 +142,7 @@ all: Makefile.Release  release\paintKarenELKHOURY.exe
 
 release\paintKarenELKHOURY.exe: E:\qt\6.5.3\msvc2019_64\lib\Qt6Widgets.lib E:\qt\6.5.3\msvc2019_64\lib\Qt6Gui.lib E:\qt\6.5.3\msvc2019_64\lib\Qt6Core.lib E:\qt\6.5.3\msvc2019_64\lib\Qt6EntryPoint.lib ui_mainwindow.h $(OBJECTS) 
 	$(LINKER) $(LFLAGS) /MANIFEST:embed /OUT:$(DESTDIR_TARGET) @<<
-release\Canvas.obj release\main.obj release\mainwindow.obj release\moc_mainwindow.obj
+release\Canvas.obj release\main.obj release\mainwindow.obj release\qrc_icons.obj release\moc_Canvas.obj release\moc_mainwindow.obj
 $(LIBS)
 <<
 
@@ -148,10 +152,10 @@ qmake: FORCE
 qmake_all: FORCE
 
 dist:
-	$(ZIP) paintKarenELKHOURY.zip $(SOURCES) $(DIST) ..\..\..\..\paintKarenELKHOURY.pro E:\qt\6.5.3\msvc2019_64\mkspecs\features\spec_pre.prf E:\qt\6.5.3\msvc2019_64\mkspecs\common\windows-desktop.conf E:\qt\6.5.3\msvc2019_64\mkspecs\features\win32\windows_vulkan_sdk.prf E:\qt\6.5.3\msvc2019_64\mkspecs\common\windows-vulkan.conf E:\qt\6.5.3\msvc2019_64\mkspecs\common\msvc-desktop.conf E:\qt\6.5.3\msvc2019_64\mkspecs\qconfig.pri E:\qt\6.5.3\msvc2019_64\mkspecs\modules\qt_ext_freetype.pri E:\qt\6.5.3\msvc2019_64\mkspecs\modules\qt_ext_libjpeg.pri E:\qt\6.5.3\msvc2019_64\mkspecs\modules\qt_ext_libpng.pri E:\qt\6.5.3\msvc2019_64\mkspecs\modules\qt_lib_concurrent.pri E:\qt\6.5.3\msvc2019_64\mkspecs\modules\qt_lib_concurrent_private.pri E:\qt\6.5.3\msvc2019_64\mkspecs\modules\qt_lib_core.pri E:\qt\6.5.3\msvc2019_64\mkspecs\modules\qt_lib_core_private.pri E:\qt\6.5.3\msvc2019_64\mkspecs\modules\qt_lib_dbus.pri E:\qt\6.5.3\msvc2019_64\mkspecs\modules\qt_lib_dbus_private.pri E:\qt\6.5.3\msvc2019_64\mkspecs\modules\qt_lib_designer.pri E:\qt\6.5.3\msvc2019_64\mkspecs\modules\qt_lib_designer_private.pri E:\qt\6.5.3\msvc2019_64\mkspecs\modules\qt_lib_designercomponents_private.pri E:\qt\6.5.3\msvc2019_64\mkspecs\modules\qt_lib_devicediscovery_support_private.pri E:\qt\6.5.3\msvc2019_64\mkspecs\modules\qt_lib_entrypoint_private.pri E:\qt\6.5.3\msvc2019_64\mkspecs\modules\qt_lib_example_icons_private.pri E:\qt\6.5.3\msvc2019_64\mkspecs\modules\qt_lib_fb_support_private.pri E:\qt\6.5.3\msvc2019_64\mkspecs\modules\qt_lib_freetype_private.pri E:\qt\6.5.3\msvc2019_64\mkspecs\modules\qt_lib_gui.pri E:\qt\6.5.3\msvc2019_64\mkspecs\modules\qt_lib_gui_private.pri E:\qt\6.5.3\msvc2019_64\mkspecs\modules\qt_lib_harfbuzz_private.pri E:\qt\6.5.3\msvc2019_64\mkspecs\modules\qt_lib_help.pri E:\qt\6.5.3\msvc2019_64\mkspecs\modules\qt_lib_help_private.pri E:\qt\6.5.3\msvc2019_64\mkspecs\modules\qt_lib_jpeg_private.pri E:\qt\6.5.3\msvc2019_64\mkspecs\modules\qt_lib_jsonrpc_private.pri E:\qt\6.5.3\msvc2019_64\mkspecs\modules\qt_lib_labsanimation.pri E:\qt\6.5.3\msvc2019_64\mkspecs\modules\qt_lib_labsanimation_private.pri E:\qt\6.5.3\msvc2019_64\mkspecs\modules\qt_lib_labsfolderlistmodel.pri E:\qt\6.5.3\msvc2019_64\mkspecs\modules\qt_lib_labsfolderlistmodel_private.pri E:\qt\6.5.3\msvc2019_64\mkspecs\modules\qt_lib_labsqmlmodels.pri E:\qt\6.5.3\msvc2019_64\mkspecs\modules\qt_lib_labsqmlmodels_private.pri E:\qt\6.5.3\msvc2019_64\mkspecs\modules\qt_lib_labssettings.pri E:\qt\6.5.3\msvc2019_64\mkspecs\modules\qt_lib_labssettings_private.pri E:\qt\6.5.3\msvc2019_64\mkspecs\modules\qt_lib_labssharedimage.pri E:\qt\6.5.3\msvc2019_64\mkspecs\modules\qt_lib_labssharedimage_private.pri E:\qt\6.5.3\msvc2019_64\mkspecs\modules\qt_lib_labswavefrontmesh.pri E:\qt\6.5.3\msvc2019_64\mkspecs\modules\qt_lib_labswavefrontmesh_private.pri E:\qt\6.5.3\msvc2019_64\mkspecs\modules\qt_lib_languageserver_private.pri E:\qt\6.5.3\msvc2019_64\mkspecs\modules\qt_lib_linguist.pri E:\qt\6.5.3\msvc2019_64\mkspecs\modules\qt_lib_linguist_private.pri E:\qt\6.5.3\msvc2019_64\mkspecs\modules\qt_lib_network.pri E:\qt\6.5.3\msvc2019_64\mkspecs\modules\qt_lib_network_private.pri E:\qt\6.5.3\msvc2019_64\mkspecs\modules\qt_lib_opengl.pri E:\qt\6.5.3\msvc2019_64\mkspecs\modules\qt_lib_opengl_private.pri E:\qt\6.5.3\msvc2019_64\mkspecs\modules\qt_lib_openglwidgets.pri E:\qt\6.5.3\msvc2019_64\mkspecs\modules\qt_lib_openglwidgets_private.pri E:\qt\6.5.3\msvc2019_64\mkspecs\modules\qt_lib_packetprotocol_private.pri E:\qt\6.5.3\msvc2019_64\mkspecs\modules\qt_lib_png_private.pri E:\qt\6.5.3\msvc2019_64\mkspecs\modules\qt_lib_printsupport.pri E:\qt\6.5.3\msvc2019_64\mkspecs\modules\qt_lib_printsupport_private.pri E:\qt\6.5.3\msvc2019_64\mkspecs\modules\qt_lib_qml.pri E:\qt\6.5.3\msvc2019_64\mkspecs\modules\qt_lib_qml_private.pri E:\qt\6.5.3\msvc2019_64\mkspecs\modules\qt_lib_qmlcompiler_private.pri E:\qt\6.5.3\msvc2019_64\mkspecs\modules\qt_lib_qmlcore.pri E:\qt\6.5.3\msvc2019_64\mkspecs\modules\qt_lib_qmlcore_private.pri E:\qt\6.5.3\msvc2019_64\mkspecs\modules\qt_lib_qmldebug_private.pri E:\qt\6.5.3\msvc2019_64\mkspecs\modules\qt_lib_qmldom_private.pri E:\qt\6.5.3\msvc2019_64\mkspecs\modules\qt_lib_qmlintegration.pri E:\qt\6.5.3\msvc2019_64\mkspecs\modules\qt_lib_qmlintegration_private.pri E:\qt\6.5.3\msvc2019_64\mkspecs\modules\qt_lib_qmllocalstorage.pri E:\qt\6.5.3\msvc2019_64\mkspecs\modules\qt_lib_qmllocalstorage_private.pri E:\qt\6.5.3\msvc2019_64\mkspecs\modules\qt_lib_qmlmodels.pri E:\qt\6.5.3\msvc2019_64\mkspecs\modules\qt_lib_qmlmodels_private.pri E:\qt\6.5.3\msvc2019_64\mkspecs\modules\qt_lib_qmltest.pri E:\qt\6.5.3\msvc2019_64\mkspecs\modules\qt_lib_qmltest_private.pri E:\qt\6.5.3\msvc2019_64\mkspecs\modules\qt_lib_qmltyperegistrar_private.pri E:\qt\6.5.3\msvc2019_64\mkspecs\modules\qt_lib_qmlworkerscript.pri E:\qt\6.5.3\msvc2019_64\mkspecs\modules\qt_lib_qmlworkerscript_private.pri E:\qt\6.5.3\msvc2019_64\mkspecs\modules\qt_lib_qmlxmllistmodel.pri E:\qt\6.5.3\msvc2019_64\mkspecs\modules\qt_lib_qmlxmllistmodel_private.pri E:\qt\6.5.3\msvc2019_64\mkspecs\modules\qt_lib_quick.pri E:\qt\6.5.3\msvc2019_64\mkspecs\modules\qt_lib_quick_private.pri E:\qt\6.5.3\msvc2019_64\mkspecs\modules\qt_lib_quickcontrols2.pri E:\qt\6.5.3\msvc2019_64\mkspecs\modules\qt_lib_quickcontrols2_private.pri E:\qt\6.5.3\msvc2019_64\mkspecs\modules\qt_lib_quickcontrols2impl.pri E:\qt\6.5.3\msvc2019_64\mkspecs\modules\qt_lib_quickcontrols2impl_private.pri E:\qt\6.5.3\msvc2019_64\mkspecs\modules\qt_lib_quickcontrolstestutilsprivate_private.pri E:\qt\6.5.3\msvc2019_64\mkspecs\modules\qt_lib_quickdialogs2.pri E:\qt\6.5.3\msvc2019_64\mkspecs\modules\qt_lib_quickdialogs2_private.pri E:\qt\6.5.3\msvc2019_64\mkspecs\modules\qt_lib_quickdialogs2quickimpl.pri E:\qt\6.5.3\msvc2019_64\mkspecs\modules\qt_lib_quickdialogs2quickimpl_private.pri E:\qt\6.5.3\msvc2019_64\mkspecs\modules\qt_lib_quickdialogs2utils.pri E:\qt\6.5.3\msvc2019_64\mkspecs\modules\qt_lib_quickdialogs2utils_private.pri E:\qt\6.5.3\msvc2019_64\mkspecs\modules\qt_lib_quickeffects_private.pri E:\qt\6.5.3\msvc2019_64\mkspecs\modules\qt_lib_quicklayouts.pri E:\qt\6.5.3\msvc2019_64\mkspecs\modules\qt_lib_quicklayouts_private.pri E:\qt\6.5.3\msvc2019_64\mkspecs\modules\qt_lib_quickparticles_private.pri E:\qt\6.5.3\msvc2019_64\mkspecs\modules\qt_lib_quickshapes_private.pri E:\qt\6.5.3\msvc2019_64\mkspecs\modules\qt_lib_quicktemplates2.pri E:\qt\6.5.3\msvc2019_64\mkspecs\modules\qt_lib_quicktemplates2_private.pri E:\qt\6.5.3\msvc2019_64\mkspecs\modules\qt_lib_quicktestutilsprivate_private.pri E:\qt\6.5.3\msvc2019_64\mkspecs\modules\qt_lib_quickwidgets.pri E:\qt\6.5.3\msvc2019_64\mkspecs\modules\qt_lib_quickwidgets_private.pri E:\qt\6.5.3\msvc2019_64\mkspecs\modules\qt_lib_scxml.pri E:\qt\6.5.3\msvc2019_64\mkspecs\modules\qt_lib_scxml_private.pri E:\qt\6.5.3\msvc2019_64\mkspecs\modules\qt_lib_scxmlqml.pri E:\qt\6.5.3\msvc2019_64\mkspecs\modules\qt_lib_scxmlqml_private.pri E:\qt\6.5.3\msvc2019_64\mkspecs\modules\qt_lib_sql.pri E:\qt\6.5.3\msvc2019_64\mkspecs\modules\qt_lib_sql_private.pri E:\qt\6.5.3\msvc2019_64\mkspecs\modules\qt_lib_statemachine.pri E:\qt\6.5.3\msvc2019_64\mkspecs\modules\qt_lib_statemachine_private.pri E:\qt\6.5.3\msvc2019_64\mkspecs\modules\qt_lib_statemachineqml.pri E:\qt\6.5.3\msvc2019_64\mkspecs\modules\qt_lib_statemachineqml_private.pri E:\qt\6.5.3\msvc2019_64\mkspecs\modules\qt_lib_svg.pri E:\qt\6.5.3\msvc2019_64\mkspecs\modules\qt_lib_svg_private.pri E:\qt\6.5.3\msvc2019_64\mkspecs\modules\qt_lib_svgwidgets.pri E:\qt\6.5.3\msvc2019_64\mkspecs\modules\qt_lib_svgwidgets_private.pri E:\qt\6.5.3\msvc2019_64\mkspecs\modules\qt_lib_testlib.pri E:\qt\6.5.3\msvc2019_64\mkspecs\modules\qt_lib_testlib_private.pri E:\qt\6.5.3\msvc2019_64\mkspecs\modules\qt_lib_tools_private.pri E:\qt\6.5.3\msvc2019_64\mkspecs\modules\qt_lib_uiplugin.pri E:\qt\6.5.3\msvc2019_64\mkspecs\modules\qt_lib_uitools.pri E:\qt\6.5.3\msvc2019_64\mkspecs\modules\qt_lib_uitools_private.pri E:\qt\6.5.3\msvc2019_64\mkspecs\modules\qt_lib_widgets.pri E:\qt\6.5.3\msvc2019_64\mkspecs\modules\qt_lib_widgets_private.pri E:\qt\6.5.3\msvc2019_64\mkspecs\modules\qt_lib_xml.pri E:\qt\6.5.3\msvc2019_64\mkspecs\modules\qt_lib_xml_private.pri E:\qt\6.5.3\msvc2019_64\mkspecs\modules\qt_lib_zlib_private.pri E:\qt\6.5.3\msvc2019_64\mkspecs\features\qt_functions.prf E:\qt\6.5.3\msvc2019_64\mkspecs\features\qt_config.prf E:\qt\6.5.3\msvc2019_64\mkspecs\win32-msvc\qmake.conf E:\qt\6.5.3\msvc2019_64\mkspecs\features\spec_post.prf .qmake.stash E:\qt\6.5.3\msvc2019_64\mkspecs\features\exclusive_builds.prf E:\qt\6.5.3\msvc2019_64\mkspecs\common\msvc-version.conf E:\qt\6.5.3\msvc2019_64\mkspecs\features\toolchain.prf E:\qt\6.5.3\msvc2019_64\mkspecs\features\default_pre.prf E:\qt\6.5.3\msvc2019_64\mkspecs\features\win32\default_pre.prf E:\qt\6.5.3\msvc2019_64\mkspecs\features\resolve_config.prf E:\qt\6.5.3\msvc2019_64\mkspecs\features\exclusive_builds_post.prf E:\qt\6.5.3\msvc2019_64\mkspecs\features\default_post.prf E:\qt\6.5.3\msvc2019_64\mkspecs\features\build_pass.prf E:\qt\6.5.3\msvc2019_64\mkspecs\features\qml_debug.prf E:\qt\6.5.3\msvc2019_64\mkspecs\features\entrypoint.prf E:\qt\6.5.3\msvc2019_64\mkspecs\features\precompile_header.prf E:\qt\6.5.3\msvc2019_64\mkspecs\features\warn_on.prf E:\qt\6.5.3\msvc2019_64\mkspecs\features\qt.prf E:\qt\6.5.3\msvc2019_64\mkspecs\features\resources_functions.prf E:\qt\6.5.3\msvc2019_64\mkspecs\features\resources.prf E:\qt\6.5.3\msvc2019_64\mkspecs\features\moc.prf E:\qt\6.5.3\msvc2019_64\mkspecs\features\win32\opengl.prf E:\qt\6.5.3\msvc2019_64\mkspecs\features\uic.prf E:\qt\6.5.3\msvc2019_64\mkspecs\features\qmake_use.prf E:\qt\6.5.3\msvc2019_64\mkspecs\features\file_copies.prf E:\qt\6.5.3\msvc2019_64\mkspecs\features\win32\windows.prf E:\qt\6.5.3\msvc2019_64\mkspecs\features\testcase_targets.prf E:\qt\6.5.3\msvc2019_64\mkspecs\features\exceptions.prf E:\qt\6.5.3\msvc2019_64\mkspecs\features\yacc.prf E:\qt\6.5.3\msvc2019_64\mkspecs\features\lex.prf ..\..\paintKarenELKHOURY.pro E:\qt\6.5.3\msvc2019_64\lib\Qt6Widgets.prl E:\qt\6.5.3\msvc2019_64\lib\Qt6Gui.prl E:\qt\6.5.3\msvc2019_64\lib\Qt6Core.prl E:\qt\6.5.3\msvc2019_64\lib\Qt6EntryPoint.prl    E:\qt\6.5.3\msvc2019_64\mkspecs\features\data\dummy.cpp ..\..\Canvas.h ..\..\mainwindow.h  ..\..\Canvas.cpp ..\..\main.cpp ..\..\mainwindow.cpp ..\..\mainwindow.ui    
+	$(ZIP) paintKarenELKHOURY.zip $(SOURCES) $(DIST) ..\..\..\..\paintKarenELKHOURY.pro E:\qt\6.5.3\msvc2019_64\mkspecs\features\spec_pre.prf E:\qt\6.5.3\msvc2019_64\mkspecs\common\windows-desktop.conf E:\qt\6.5.3\msvc2019_64\mkspecs\features\win32\windows_vulkan_sdk.prf E:\qt\6.5.3\msvc2019_64\mkspecs\common\windows-vulkan.conf E:\qt\6.5.3\msvc2019_64\mkspecs\common\msvc-desktop.conf E:\qt\6.5.3\msvc2019_64\mkspecs\qconfig.pri E:\qt\6.5.3\msvc2019_64\mkspecs\modules\qt_ext_freetype.pri E:\qt\6.5.3\msvc2019_64\mkspecs\modules\qt_ext_libjpeg.pri E:\qt\6.5.3\msvc2019_64\mkspecs\modules\qt_ext_libpng.pri E:\qt\6.5.3\msvc2019_64\mkspecs\modules\qt_lib_concurrent.pri E:\qt\6.5.3\msvc2019_64\mkspecs\modules\qt_lib_concurrent_private.pri E:\qt\6.5.3\msvc2019_64\mkspecs\modules\qt_lib_core.pri E:\qt\6.5.3\msvc2019_64\mkspecs\modules\qt_lib_core_private.pri E:\qt\6.5.3\msvc2019_64\mkspecs\modules\qt_lib_dbus.pri E:\qt\6.5.3\msvc2019_64\mkspecs\modules\qt_lib_dbus_private.pri E:\qt\6.5.3\msvc2019_64\mkspecs\modules\qt_lib_designer.pri E:\qt\6.5.3\msvc2019_64\mkspecs\modules\qt_lib_designer_private.pri E:\qt\6.5.3\msvc2019_64\mkspecs\modules\qt_lib_designercomponents_private.pri E:\qt\6.5.3\msvc2019_64\mkspecs\modules\qt_lib_devicediscovery_support_private.pri E:\qt\6.5.3\msvc2019_64\mkspecs\modules\qt_lib_entrypoint_private.pri E:\qt\6.5.3\msvc2019_64\mkspecs\modules\qt_lib_example_icons_private.pri E:\qt\6.5.3\msvc2019_64\mkspecs\modules\qt_lib_fb_support_private.pri E:\qt\6.5.3\msvc2019_64\mkspecs\modules\qt_lib_freetype_private.pri E:\qt\6.5.3\msvc2019_64\mkspecs\modules\qt_lib_gui.pri E:\qt\6.5.3\msvc2019_64\mkspecs\modules\qt_lib_gui_private.pri E:\qt\6.5.3\msvc2019_64\mkspecs\modules\qt_lib_harfbuzz_private.pri E:\qt\6.5.3\msvc2019_64\mkspecs\modules\qt_lib_help.pri E:\qt\6.5.3\msvc2019_64\mkspecs\modules\qt_lib_help_private.pri E:\qt\6.5.3\msvc2019_64\mkspecs\modules\qt_lib_jpeg_private.pri E:\qt\6.5.3\msvc2019_64\mkspecs\modules\qt_lib_jsonrpc_private.pri E:\qt\6.5.3\msvc2019_64\mkspecs\modules\qt_lib_labsanimation.pri E:\qt\6.5.3\msvc2019_64\mkspecs\modules\qt_lib_labsanimation_private.pri E:\qt\6.5.3\msvc2019_64\mkspecs\modules\qt_lib_labsfolderlistmodel.pri E:\qt\6.5.3\msvc2019_64\mkspecs\modules\qt_lib_labsfolderlistmodel_private.pri E:\qt\6.5.3\msvc2019_64\mkspecs\modules\qt_lib_labsqmlmodels.pri E:\qt\6.5.3\msvc2019_64\mkspecs\modules\qt_lib_labsqmlmodels_private.pri E:\qt\6.5.3\msvc2019_64\mkspecs\modules\qt_lib_labssettings.pri E:\qt\6.5.3\msvc2019_64\mkspecs\modules\qt_lib_labssettings_private.pri E:\qt\6.5.3\msvc2019_64\mkspecs\modules\qt_lib_labssharedimage.pri E:\qt\6.5.3\msvc2019_64\mkspecs\modules\qt_lib_labssharedimage_private.pri E:\qt\6.5.3\msvc2019_64\mkspecs\modules\qt_lib_labswavefrontmesh.pri E:\qt\6.5.3\msvc2019_64\mkspecs\modules\qt_lib_labswavefrontmesh_private.pri E:\qt\6.5.3\msvc2019_64\mkspecs\modules\qt_lib_languageserver_private.pri E:\qt\6.5.3\msvc2019_64\mkspecs\modules\qt_lib_linguist.pri E:\qt\6.5.3\msvc2019_64\mkspecs\modules\qt_lib_linguist_private.pri E:\qt\6.5.3\msvc2019_64\mkspecs\modules\qt_lib_network.pri E:\qt\6.5.3\msvc2019_64\mkspecs\modules\qt_lib_network_private.pri E:\qt\6.5.3\msvc2019_64\mkspecs\modules\qt_lib_opengl.pri E:\qt\6.5.3\msvc2019_64\mkspecs\modules\qt_lib_opengl_private.pri E:\qt\6.5.3\msvc2019_64\mkspecs\modules\qt_lib_openglwidgets.pri E:\qt\6.5.3\msvc2019_64\mkspecs\modules\qt_lib_openglwidgets_private.pri E:\qt\6.5.3\msvc2019_64\mkspecs\modules\qt_lib_packetprotocol_private.pri E:\qt\6.5.3\msvc2019_64\mkspecs\modules\qt_lib_png_private.pri E:\qt\6.5.3\msvc2019_64\mkspecs\modules\qt_lib_printsupport.pri E:\qt\6.5.3\msvc2019_64\mkspecs\modules\qt_lib_printsupport_private.pri E:\qt\6.5.3\msvc2019_64\mkspecs\modules\qt_lib_qml.pri E:\qt\6.5.3\msvc2019_64\mkspecs\modules\qt_lib_qml_private.pri E:\qt\6.5.3\msvc2019_64\mkspecs\modules\qt_lib_qmlcompiler_private.pri E:\qt\6.5.3\msvc2019_64\mkspecs\modules\qt_lib_qmlcore.pri E:\qt\6.5.3\msvc2019_64\mkspecs\modules\qt_lib_qmlcore_private.pri E:\qt\6.5.3\msvc2019_64\mkspecs\modules\qt_lib_qmldebug_private.pri E:\qt\6.5.3\msvc2019_64\mkspecs\modules\qt_lib_qmldom_private.pri E:\qt\6.5.3\msvc2019_64\mkspecs\modules\qt_lib_qmlintegration.pri E:\qt\6.5.3\msvc2019_64\mkspecs\modules\qt_lib_qmlintegration_private.pri E:\qt\6.5.3\msvc2019_64\mkspecs\modules\qt_lib_qmllocalstorage.pri E:\qt\6.5.3\msvc2019_64\mkspecs\modules\qt_lib_qmllocalstorage_private.pri E:\qt\6.5.3\msvc2019_64\mkspecs\modules\qt_lib_qmlmodels.pri E:\qt\6.5.3\msvc2019_64\mkspecs\modules\qt_lib_qmlmodels_private.pri E:\qt\6.5.3\msvc2019_64\mkspecs\modules\qt_lib_qmltest.pri E:\qt\6.5.3\msvc2019_64\mkspecs\modules\qt_lib_qmltest_private.pri E:\qt\6.5.3\msvc2019_64\mkspecs\modules\qt_lib_qmltyperegistrar_private.pri E:\qt\6.5.3\msvc2019_64\mkspecs\modules\qt_lib_qmlworkerscript.pri E:\qt\6.5.3\msvc2019_64\mkspecs\modules\qt_lib_qmlworkerscript_private.pri E:\qt\6.5.3\msvc2019_64\mkspecs\modules\qt_lib_qmlxmllistmodel.pri E:\qt\6.5.3\msvc2019_64\mkspecs\modules\qt_lib_qmlxmllistmodel_private.pri E:\qt\6.5.3\msvc2019_64\mkspecs\modules\qt_lib_quick.pri E:\qt\6.5.3\msvc2019_64\mkspecs\modules\qt_lib_quick_private.pri E:\qt\6.5.3\msvc2019_64\mkspecs\modules\qt_lib_quickcontrols2.pri E:\qt\6.5.3\msvc2019_64\mkspecs\modules\qt_lib_quickcontrols2_private.pri E:\qt\6.5.3\msvc2019_64\mkspecs\modules\qt_lib_quickcontrols2impl.pri E:\qt\6.5.3\msvc2019_64\mkspecs\modules\qt_lib_quickcontrols2impl_private.pri E:\qt\6.5.3\msvc2019_64\mkspecs\modules\qt_lib_quickcontrolstestutilsprivate_private.pri E:\qt\6.5.3\msvc2019_64\mkspecs\modules\qt_lib_quickdialogs2.pri E:\qt\6.5.3\msvc2019_64\mkspecs\modules\qt_lib_quickdialogs2_private.pri E:\qt\6.5.3\msvc2019_64\mkspecs\modules\qt_lib_quickdialogs2quickimpl.pri E:\qt\6.5.3\msvc2019_64\mkspecs\modules\qt_lib_quickdialogs2quickimpl_private.pri E:\qt\6.5.3\msvc2019_64\mkspecs\modules\qt_lib_quickdialogs2utils.pri E:\qt\6.5.3\msvc2019_64\mkspecs\modules\qt_lib_quickdialogs2utils_private.pri E:\qt\6.5.3\msvc2019_64\mkspecs\modules\qt_lib_quickeffects_private.pri E:\qt\6.5.3\msvc2019_64\mkspecs\modules\qt_lib_quicklayouts.pri E:\qt\6.5.3\msvc2019_64\mkspecs\modules\qt_lib_quicklayouts_private.pri E:\qt\6.5.3\msvc2019_64\mkspecs\modules\qt_lib_quickparticles_private.pri E:\qt\6.5.3\msvc2019_64\mkspecs\modules\qt_lib_quickshapes_private.pri E:\qt\6.5.3\msvc2019_64\mkspecs\modules\qt_lib_quicktemplates2.pri E:\qt\6.5.3\msvc2019_64\mkspecs\modules\qt_lib_quicktemplates2_private.pri E:\qt\6.5.3\msvc2019_64\mkspecs\modules\qt_lib_quicktestutilsprivate_private.pri E:\qt\6.5.3\msvc2019_64\mkspecs\modules\qt_lib_quickwidgets.pri E:\qt\6.5.3\msvc2019_64\mkspecs\modules\qt_lib_quickwidgets_private.pri E:\qt\6.5.3\msvc2019_64\mkspecs\modules\qt_lib_scxml.pri E:\qt\6.5.3\msvc2019_64\mkspecs\modules\qt_lib_scxml_private.pri E:\qt\6.5.3\msvc2019_64\mkspecs\modules\qt_lib_scxmlqml.pri E:\qt\6.5.3\msvc2019_64\mkspecs\modules\qt_lib_scxmlqml_private.pri E:\qt\6.5.3\msvc2019_64\mkspecs\modules\qt_lib_sql.pri E:\qt\6.5.3\msvc2019_64\mkspecs\modules\qt_lib_sql_private.pri E:\qt\6.5.3\msvc2019_64\mkspecs\modules\qt_lib_statemachine.pri E:\qt\6.5.3\msvc2019_64\mkspecs\modules\qt_lib_statemachine_private.pri E:\qt\6.5.3\msvc2019_64\mkspecs\modules\qt_lib_statemachineqml.pri E:\qt\6.5.3\msvc2019_64\mkspecs\modules\qt_lib_statemachineqml_private.pri E:\qt\6.5.3\msvc2019_64\mkspecs\modules\qt_lib_svg.pri E:\qt\6.5.3\msvc2019_64\mkspecs\modules\qt_lib_svg_private.pri E:\qt\6.5.3\msvc2019_64\mkspecs\modules\qt_lib_svgwidgets.pri E:\qt\6.5.3\msvc2019_64\mkspecs\modules\qt_lib_svgwidgets_private.pri E:\qt\6.5.3\msvc2019_64\mkspecs\modules\qt_lib_testlib.pri E:\qt\6.5.3\msvc2019_64\mkspecs\modules\qt_lib_testlib_private.pri E:\qt\6.5.3\msvc2019_64\mkspecs\modules\qt_lib_tools_private.pri E:\qt\6.5.3\msvc2019_64\mkspecs\modules\qt_lib_uiplugin.pri E:\qt\6.5.3\msvc2019_64\mkspecs\modules\qt_lib_uitools.pri E:\qt\6.5.3\msvc2019_64\mkspecs\modules\qt_lib_uitools_private.pri E:\qt\6.5.3\msvc2019_64\mkspecs\modules\qt_lib_widgets.pri E:\qt\6.5.3\msvc2019_64\mkspecs\modules\qt_lib_widgets_private.pri E:\qt\6.5.3\msvc2019_64\mkspecs\modules\qt_lib_xml.pri E:\qt\6.5.3\msvc2019_64\mkspecs\modules\qt_lib_xml_private.pri E:\qt\6.5.3\msvc2019_64\mkspecs\modules\qt_lib_zlib_private.pri E:\qt\6.5.3\msvc2019_64\mkspecs\features\qt_functions.prf E:\qt\6.5.3\msvc2019_64\mkspecs\features\qt_config.prf E:\qt\6.5.3\msvc2019_64\mkspecs\win32-msvc\qmake.conf E:\qt\6.5.3\msvc2019_64\mkspecs\features\spec_post.prf .qmake.stash E:\qt\6.5.3\msvc2019_64\mkspecs\features\exclusive_builds.prf E:\qt\6.5.3\msvc2019_64\mkspecs\common\msvc-version.conf E:\qt\6.5.3\msvc2019_64\mkspecs\features\toolchain.prf E:\qt\6.5.3\msvc2019_64\mkspecs\features\default_pre.prf E:\qt\6.5.3\msvc2019_64\mkspecs\features\win32\default_pre.prf E:\qt\6.5.3\msvc2019_64\mkspecs\features\resolve_config.prf E:\qt\6.5.3\msvc2019_64\mkspecs\features\exclusive_builds_post.prf E:\qt\6.5.3\msvc2019_64\mkspecs\features\default_post.prf E:\qt\6.5.3\msvc2019_64\mkspecs\features\build_pass.prf E:\qt\6.5.3\msvc2019_64\mkspecs\features\qml_debug.prf E:\qt\6.5.3\msvc2019_64\mkspecs\features\entrypoint.prf E:\qt\6.5.3\msvc2019_64\mkspecs\features\precompile_header.prf E:\qt\6.5.3\msvc2019_64\mkspecs\features\warn_on.prf E:\qt\6.5.3\msvc2019_64\mkspecs\features\qt.prf E:\qt\6.5.3\msvc2019_64\mkspecs\features\resources_functions.prf E:\qt\6.5.3\msvc2019_64\mkspecs\features\resources.prf E:\qt\6.5.3\msvc2019_64\mkspecs\features\moc.prf E:\qt\6.5.3\msvc2019_64\mkspecs\features\win32\opengl.prf E:\qt\6.5.3\msvc2019_64\mkspecs\features\uic.prf E:\qt\6.5.3\msvc2019_64\mkspecs\features\qmake_use.prf E:\qt\6.5.3\msvc2019_64\mkspecs\features\file_copies.prf E:\qt\6.5.3\msvc2019_64\mkspecs\features\win32\windows.prf E:\qt\6.5.3\msvc2019_64\mkspecs\features\testcase_targets.prf E:\qt\6.5.3\msvc2019_64\mkspecs\features\exceptions.prf E:\qt\6.5.3\msvc2019_64\mkspecs\features\yacc.prf E:\qt\6.5.3\msvc2019_64\mkspecs\features\lex.prf ..\..\paintKarenELKHOURY.pro ..\..\icons\icons.qrc E:\qt\6.5.3\msvc2019_64\lib\Qt6Widgets.prl E:\qt\6.5.3\msvc2019_64\lib\Qt6Gui.prl E:\qt\6.5.3\msvc2019_64\lib\Qt6Core.prl E:\qt\6.5.3\msvc2019_64\lib\Qt6EntryPoint.prl   ..\..\icons\icons.qrc E:\qt\6.5.3\msvc2019_64\mkspecs\features\data\dummy.cpp ..\..\Canvas.h ..\..\mainwindow.h  ..\..\Canvas.cpp ..\..\main.cpp ..\..\mainwindow.cpp ..\..\mainwindow.ui    
 
 clean: compiler_clean 
-	-$(DEL_FILE) release\Canvas.obj release\main.obj release\mainwindow.obj release\moc_mainwindow.obj
+	-$(DEL_FILE) release\Canvas.obj release\main.obj release\mainwindow.obj release\qrc_icons.obj release\moc_Canvas.obj release\moc_mainwindow.obj
 
 distclean: clean 
 	-$(DEL_FILE) .qmake.stash
@@ -168,17 +172,194 @@ benchmark: first
 
 compiler_no_pch_compiler_make_all:
 compiler_no_pch_compiler_clean:
-compiler_rcc_make_all:
+compiler_rcc_make_all: release\qrc_icons.cpp
 compiler_rcc_clean:
+	-$(DEL_FILE) release\qrc_icons.cpp
+release\qrc_icons.cpp: ..\..\icons\icons.qrc \
+		E:\qt\6.5.3\msvc2019_64\bin\rcc.exe \
+		..\..\icons\pink.png \
+		..\..\icons\dot.png \
+		..\..\icons\blue.png \
+		..\..\icons\solid.png \
+		..\..\icons\dash.png
+	E:\qt\6.5.3\msvc2019_64\bin\rcc.exe -name icons --no-zstd ..\..\icons\icons.qrc -o release\qrc_icons.cpp
+
 compiler_moc_predefs_make_all: release\moc_predefs.h
 compiler_moc_predefs_clean:
 	-$(DEL_FILE) release\moc_predefs.h
 release\moc_predefs.h: E:\qt\6.5.3\msvc2019_64\mkspecs\features\data\dummy.cpp
 	cl -BxE:\qt\6.5.3\msvc2019_64\bin\qmake.exe -nologo -Zc:wchar_t -FS -Zc:rvalueCast -Zc:inline -Zc:strictStrings -Zc:throwingNew -permissive- -Zc:__cplusplus -Zc:externConstexpr -O2 -MD -std:c++17 -utf-8 -W3 -w34100 -w34189 -w44996 -w44456 -w44457 -w44458 -wd4577 -wd4467 -E E:\qt\6.5.3\msvc2019_64\mkspecs\features\data\dummy.cpp 2>NUL >release\moc_predefs.h
 
-compiler_moc_header_make_all: release\moc_mainwindow.cpp
+compiler_moc_header_make_all: release\moc_Canvas.cpp release\moc_mainwindow.cpp
 compiler_moc_header_clean:
-	-$(DEL_FILE) release\moc_mainwindow.cpp
+	-$(DEL_FILE) release\moc_Canvas.cpp release\moc_mainwindow.cpp
+release\moc_Canvas.cpp: ..\..\Canvas.h \
+		E:\qt\6.5.3\msvc2019_64\include\QtWidgets\QWidget \
+		E:\qt\6.5.3\msvc2019_64\include\QtWidgets\qwidget.h \
+		E:\qt\6.5.3\msvc2019_64\include\QtWidgets\qtwidgetsglobal.h \
+		E:\qt\6.5.3\msvc2019_64\include\QtGui\qtguiglobal.h \
+		E:\qt\6.5.3\msvc2019_64\include\QtCore\qglobal.h \
+		E:\qt\6.5.3\msvc2019_64\include\QtCore\qtversionchecks.h \
+		E:\qt\6.5.3\msvc2019_64\include\QtCore\qconfig.h \
+		E:\qt\6.5.3\msvc2019_64\include\QtCore\qtcore-config.h \
+		E:\qt\6.5.3\msvc2019_64\include\QtCore\qtconfigmacros.h \
+		E:\qt\6.5.3\msvc2019_64\include\QtCore\qtcoreexports.h \
+		E:\qt\6.5.3\msvc2019_64\include\QtCore\qtpreprocessorsupport.h \
+		E:\qt\6.5.3\msvc2019_64\include\QtCore\qtnoop.h \
+		E:\qt\6.5.3\msvc2019_64\include\QtCore\qsystemdetection.h \
+		E:\qt\6.5.3\msvc2019_64\include\QtCore\qprocessordetection.h \
+		E:\qt\6.5.3\msvc2019_64\include\QtCore\qcompilerdetection.h \
+		E:\qt\6.5.3\msvc2019_64\include\QtCore\qassert.h \
+		E:\qt\6.5.3\msvc2019_64\include\QtCore\qtypes.h \
+		E:\qt\6.5.3\msvc2019_64\include\QtCore\qtclasshelpermacros.h \
+		E:\qt\6.5.3\msvc2019_64\include\QtCore\qtversion.h \
+		E:\qt\6.5.3\msvc2019_64\include\QtCore\qtypeinfo.h \
+		E:\qt\6.5.3\msvc2019_64\include\QtCore\qcontainerfwd.h \
+		E:\qt\6.5.3\msvc2019_64\include\QtCore\qsysinfo.h \
+		E:\qt\6.5.3\msvc2019_64\include\QtCore\qlogging.h \
+		E:\qt\6.5.3\msvc2019_64\include\QtCore\qflags.h \
+		E:\qt\6.5.3\msvc2019_64\include\QtCore\qcompare_impl.h \
+		E:\qt\6.5.3\msvc2019_64\include\QtCore\qatomic.h \
+		E:\qt\6.5.3\msvc2019_64\include\QtCore\qbasicatomic.h \
+		E:\qt\6.5.3\msvc2019_64\include\QtCore\qatomic_cxx11.h \
+		E:\qt\6.5.3\msvc2019_64\include\QtCore\qgenericatomic.h \
+		E:\qt\6.5.3\msvc2019_64\include\QtCore\qconstructormacros.h \
+		E:\qt\6.5.3\msvc2019_64\include\QtCore\qdarwinhelpers.h \
+		E:\qt\6.5.3\msvc2019_64\include\QtCore\qexceptionhandling.h \
+		E:\qt\6.5.3\msvc2019_64\include\QtCore\qforeach.h \
+		E:\qt\6.5.3\msvc2019_64\include\QtCore\qtdeprecationmarkers.h \
+		E:\qt\6.5.3\msvc2019_64\include\QtCore\qttypetraits.h \
+		E:\qt\6.5.3\msvc2019_64\include\QtCore\qfunctionpointer.h \
+		E:\qt\6.5.3\msvc2019_64\include\QtCore\qglobalstatic.h \
+		E:\qt\6.5.3\msvc2019_64\include\QtCore\qmalloc.h \
+		E:\qt\6.5.3\msvc2019_64\include\QtCore\qminmax.h \
+		E:\qt\6.5.3\msvc2019_64\include\QtCore\qnumeric.h \
+		E:\qt\6.5.3\msvc2019_64\include\QtCore\qoverload.h \
+		E:\qt\6.5.3\msvc2019_64\include\QtCore\qswap.h \
+		E:\qt\6.5.3\msvc2019_64\include\QtCore\qtenvironmentvariables.h \
+		E:\qt\6.5.3\msvc2019_64\include\QtCore\qtresource.h \
+		E:\qt\6.5.3\msvc2019_64\include\QtCore\qttranslation.h \
+		E:\qt\6.5.3\msvc2019_64\include\QtCore\qversiontagging.h \
+		E:\qt\6.5.3\msvc2019_64\include\QtGui\qtgui-config.h \
+		E:\qt\6.5.3\msvc2019_64\include\QtGui\qtguiexports.h \
+		E:\qt\6.5.3\msvc2019_64\include\QtWidgets\qtwidgets-config.h \
+		E:\qt\6.5.3\msvc2019_64\include\QtWidgets\qtwidgetsexports.h \
+		E:\qt\6.5.3\msvc2019_64\include\QtGui\qwindowdefs.h \
+		E:\qt\6.5.3\msvc2019_64\include\QtCore\qobjectdefs.h \
+		E:\qt\6.5.3\msvc2019_64\include\QtCore\qnamespace.h \
+		E:\qt\6.5.3\msvc2019_64\include\QtCore\qtmetamacros.h \
+		E:\qt\6.5.3\msvc2019_64\include\QtCore\qobjectdefs_impl.h \
+		E:\qt\6.5.3\msvc2019_64\include\QtGui\qwindowdefs_win.h \
+		E:\qt\6.5.3\msvc2019_64\include\QtCore\qobject.h \
+		E:\qt\6.5.3\msvc2019_64\include\QtCore\qstring.h \
+		E:\qt\6.5.3\msvc2019_64\include\QtCore\qchar.h \
+		E:\qt\6.5.3\msvc2019_64\include\QtCore\qstringview.h \
+		E:\qt\6.5.3\msvc2019_64\include\QtCore\qbytearray.h \
+		E:\qt\6.5.3\msvc2019_64\include\QtCore\qrefcount.h \
+		E:\qt\6.5.3\msvc2019_64\include\QtCore\qarraydata.h \
+		E:\qt\6.5.3\msvc2019_64\include\QtCore\qpair.h \
+		E:\qt\6.5.3\msvc2019_64\include\QtCore\qarraydatapointer.h \
+		E:\qt\6.5.3\msvc2019_64\include\QtCore\qarraydataops.h \
+		E:\qt\6.5.3\msvc2019_64\include\QtCore\qcontainertools_impl.h \
+		E:\qt\6.5.3\msvc2019_64\include\QtCore\qxptype_traits.h \
+		E:\qt\6.5.3\msvc2019_64\include\QtCore\qbytearrayalgorithms.h \
+		E:\qt\6.5.3\msvc2019_64\include\QtCore\qbytearrayview.h \
+		E:\qt\6.5.3\msvc2019_64\include\QtCore\qstringfwd.h \
+		E:\qt\6.5.3\msvc2019_64\include\QtCore\q20type_traits.h \
+		E:\qt\6.5.3\msvc2019_64\include\QtCore\qstringliteral.h \
+		E:\qt\6.5.3\msvc2019_64\include\QtCore\qstringalgorithms.h \
+		E:\qt\6.5.3\msvc2019_64\include\QtCore\qanystringview.h \
+		E:\qt\6.5.3\msvc2019_64\include\QtCore\qutf8stringview.h \
+		E:\qt\6.5.3\msvc2019_64\include\QtCore\qstringtokenizer.h \
+		E:\qt\6.5.3\msvc2019_64\include\QtCore\qstringbuilder.h \
+		E:\qt\6.5.3\msvc2019_64\include\QtCore\qlist.h \
+		E:\qt\6.5.3\msvc2019_64\include\QtCore\qhashfunctions.h \
+		E:\qt\6.5.3\msvc2019_64\include\QtCore\qiterator.h \
+		E:\qt\6.5.3\msvc2019_64\include\QtCore\qbytearraylist.h \
+		E:\qt\6.5.3\msvc2019_64\include\QtCore\qstringlist.h \
+		E:\qt\6.5.3\msvc2019_64\include\QtCore\qalgorithms.h \
+		E:\qt\6.5.3\msvc2019_64\include\QtCore\qstringmatcher.h \
+		E:\qt\6.5.3\msvc2019_64\include\QtCore\qcoreevent.h \
+		E:\qt\6.5.3\msvc2019_64\include\QtCore\qscopedpointer.h \
+		E:\qt\6.5.3\msvc2019_64\include\QtCore\qmetatype.h \
+		E:\qt\6.5.3\msvc2019_64\include\QtCore\qcompare.h \
+		E:\qt\6.5.3\msvc2019_64\include\QtCore\qdatastream.h \
+		E:\qt\6.5.3\msvc2019_64\include\QtCore\qiodevicebase.h \
+		E:\qt\6.5.3\msvc2019_64\include\QtCore\qfloat16.h \
+		E:\qt\6.5.3\msvc2019_64\include\QtCore\qmath.h \
+		E:\qt\6.5.3\msvc2019_64\include\QtCore\qiterable.h \
+		E:\qt\6.5.3\msvc2019_64\include\QtCore\qmetacontainer.h \
+		E:\qt\6.5.3\msvc2019_64\include\QtCore\qcontainerinfo.h \
+		E:\qt\6.5.3\msvc2019_64\include\QtCore\qtaggedpointer.h \
+		E:\qt\6.5.3\msvc2019_64\include\QtCore\qscopeguard.h \
+		E:\qt\6.5.3\msvc2019_64\include\QtCore\qobject_impl.h \
+		E:\qt\6.5.3\msvc2019_64\include\QtCore\qbindingstorage.h \
+		E:\qt\6.5.3\msvc2019_64\include\QtCore\qmargins.h \
+		E:\qt\6.5.3\msvc2019_64\include\QtGui\qaction.h \
+		E:\qt\6.5.3\msvc2019_64\include\QtGui\qkeysequence.h \
+		E:\qt\6.5.3\msvc2019_64\include\QtGui\qicon.h \
+		E:\qt\6.5.3\msvc2019_64\include\QtCore\qsize.h \
+		E:\qt\6.5.3\msvc2019_64\include\QtGui\qpixmap.h \
+		E:\qt\6.5.3\msvc2019_64\include\QtGui\qpaintdevice.h \
+		E:\qt\6.5.3\msvc2019_64\include\QtCore\qrect.h \
+		E:\qt\6.5.3\msvc2019_64\include\QtCore\qpoint.h \
+		E:\qt\6.5.3\msvc2019_64\include\QtGui\qcolor.h \
+		E:\qt\6.5.3\msvc2019_64\include\QtGui\qrgb.h \
+		E:\qt\6.5.3\msvc2019_64\include\QtGui\qrgba64.h \
+		E:\qt\6.5.3\msvc2019_64\include\QtCore\qsharedpointer.h \
+		E:\qt\6.5.3\msvc2019_64\include\QtCore\qshareddata.h \
+		E:\qt\6.5.3\msvc2019_64\include\QtCore\qsharedpointer_impl.h \
+		E:\qt\6.5.3\msvc2019_64\include\QtGui\qimage.h \
+		E:\qt\6.5.3\msvc2019_64\include\QtGui\qpixelformat.h \
+		E:\qt\6.5.3\msvc2019_64\include\QtGui\qtransform.h \
+		E:\qt\6.5.3\msvc2019_64\include\QtGui\qpolygon.h \
+		E:\qt\6.5.3\msvc2019_64\include\QtGui\qregion.h \
+		E:\qt\6.5.3\msvc2019_64\include\QtCore\qline.h \
+		E:\qt\6.5.3\msvc2019_64\include\QtCore\qvariant.h \
+		E:\qt\6.5.3\msvc2019_64\include\QtCore\qdebug.h \
+		E:\qt\6.5.3\msvc2019_64\include\QtCore\qtextstream.h \
+		E:\qt\6.5.3\msvc2019_64\include\QtCore\qstringconverter_base.h \
+		E:\qt\6.5.3\msvc2019_64\include\QtCore\qcontiguouscache.h \
+		E:\qt\6.5.3\msvc2019_64\include\QtCore\qmap.h \
+		E:\qt\6.5.3\msvc2019_64\include\QtCore\qshareddata_impl.h \
+		E:\qt\6.5.3\msvc2019_64\include\QtCore\qset.h \
+		E:\qt\6.5.3\msvc2019_64\include\QtCore\qhash.h \
+		E:\qt\6.5.3\msvc2019_64\include\QtCore\qvarlengtharray.h \
+		E:\qt\6.5.3\msvc2019_64\include\QtCore\q20memory.h \
+		E:\qt\6.5.3\msvc2019_64\include\QtGui\qpalette.h \
+		E:\qt\6.5.3\msvc2019_64\include\QtGui\qbrush.h \
+		E:\qt\6.5.3\msvc2019_64\include\QtGui\qfont.h \
+		E:\qt\6.5.3\msvc2019_64\include\QtGui\qfontmetrics.h \
+		E:\qt\6.5.3\msvc2019_64\include\QtGui\qfontinfo.h \
+		E:\qt\6.5.3\msvc2019_64\include\QtWidgets\qsizepolicy.h \
+		E:\qt\6.5.3\msvc2019_64\include\QtGui\qcursor.h \
+		E:\qt\6.5.3\msvc2019_64\include\QtGui\qbitmap.h \
+		E:\qt\6.5.3\msvc2019_64\include\QtGui\qevent.h \
+		E:\qt\6.5.3\msvc2019_64\include\QtCore\qiodevice.h \
+		E:\qt\6.5.3\msvc2019_64\include\QtCore\qpointer.h \
+		E:\qt\6.5.3\msvc2019_64\include\QtCore\qurl.h \
+		E:\qt\6.5.3\msvc2019_64\include\QtGui\qeventpoint.h \
+		E:\qt\6.5.3\msvc2019_64\include\QtGui\qvector2d.h \
+		E:\qt\6.5.3\msvc2019_64\include\QtGui\qvectornd.h \
+		E:\qt\6.5.3\msvc2019_64\include\QtGui\qpointingdevice.h \
+		E:\qt\6.5.3\msvc2019_64\include\QtGui\qinputdevice.h \
+		E:\qt\6.5.3\msvc2019_64\include\QtGui\qscreen.h \
+		E:\qt\6.5.3\msvc2019_64\include\QtCore\QList \
+		E:\qt\6.5.3\msvc2019_64\include\QtCore\QObject \
+		E:\qt\6.5.3\msvc2019_64\include\QtCore\QRect \
+		E:\qt\6.5.3\msvc2019_64\include\QtCore\QSize \
+		E:\qt\6.5.3\msvc2019_64\include\QtCore\QSizeF \
+		E:\qt\6.5.3\msvc2019_64\include\QtGui\QTransform \
+		E:\qt\6.5.3\msvc2019_64\include\QtCore\qnativeinterface.h \
+		E:\qt\6.5.3\msvc2019_64\include\QtCore\QVector \
+		E:\qt\6.5.3\msvc2019_64\include\QtCore\qvector.h \
+		E:\qt\6.5.3\msvc2019_64\include\QtGui\QPen \
+		E:\qt\6.5.3\msvc2019_64\include\QtGui\qpen.h \
+		E:\qt\6.5.3\msvc2019_64\include\QtGui\QColor \
+		release\moc_predefs.h \
+		E:\qt\6.5.3\msvc2019_64\bin\moc.exe
+	E:\qt\6.5.3\msvc2019_64\bin\moc.exe $(DEFINES) --compiler-flavor=msvc --include C:/Users/User/Desktop/paintKaren/paintKarenELKHOURY/build/Desktop_Qt_6_5_3_MSVC2019_64bit-Debug/release/moc_predefs.h -IE:/qt/6.5.3/msvc2019_64/mkspecs/win32-msvc -IC:/Users/User/Desktop/paintKaren/paintKarenELKHOURY -IE:/qt/6.5.3/msvc2019_64/include -IE:/qt/6.5.3/msvc2019_64/include/QtWidgets -IE:/qt/6.5.3/msvc2019_64/include/QtGui -IE:/qt/6.5.3/msvc2019_64/include/QtCore -I. -I"C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.44.35207\include" -I"C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.44.35207\ATLMFC\include" -I"C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Auxiliary\VS\include" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.26100.0\ucrt" -I"C:\Program Files (x86)\Windows Kits\10\\include\10.0.26100.0\\um" -I"C:\Program Files (x86)\Windows Kits\10\\include\10.0.26100.0\\shared" -I"C:\Program Files (x86)\Windows Kits\10\\include\10.0.26100.0\\winrt" -I"C:\Program Files (x86)\Windows Kits\10\\include\10.0.26100.0\\cppwinrt" ..\..\Canvas.h -o release\moc_Canvas.cpp
+
 release\moc_mainwindow.cpp: ..\..\mainwindow.h \
 		E:\qt\6.5.3\msvc2019_64\include\QtWidgets\QMainWindow \
 		E:\qt\6.5.3\msvc2019_64\include\QtWidgets\qmainwindow.h \
@@ -360,7 +541,7 @@ compiler_yacc_impl_make_all:
 compiler_yacc_impl_clean:
 compiler_lex_make_all:
 compiler_lex_clean:
-compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean compiler_uic_clean 
+compiler_clean: compiler_rcc_clean compiler_moc_predefs_clean compiler_moc_header_clean compiler_uic_clean 
 
 
 
@@ -524,10 +705,16 @@ release\Canvas.obj: ..\..\Canvas.cpp ..\..\Canvas.h \
 		E:\qt\6.5.3\msvc2019_64\include\QtCore\QSizeF \
 		E:\qt\6.5.3\msvc2019_64\include\QtGui\QTransform \
 		E:\qt\6.5.3\msvc2019_64\include\QtCore\qnativeinterface.h \
+		E:\qt\6.5.3\msvc2019_64\include\QtCore\QVector \
+		E:\qt\6.5.3\msvc2019_64\include\QtCore\qvector.h \
+		E:\qt\6.5.3\msvc2019_64\include\QtGui\QPen \
+		E:\qt\6.5.3\msvc2019_64\include\QtGui\qpen.h \
+		E:\qt\6.5.3\msvc2019_64\include\QtGui\QColor \
 		E:\qt\6.5.3\msvc2019_64\include\QtGui\QPainter \
 		E:\qt\6.5.3\msvc2019_64\include\QtGui\qpainter.h \
 		E:\qt\6.5.3\msvc2019_64\include\QtGui\qtextoption.h \
-		E:\qt\6.5.3\msvc2019_64\include\QtGui\qpen.h
+		E:\qt\6.5.3\msvc2019_64\include\QtGui\QMouseEvent \
+		E:\qt\6.5.3\msvc2019_64\include\QtGui\QAction
 
 release\main.obj: ..\..\main.cpp ..\..\mainwindow.h \
 		E:\qt\6.5.3\msvc2019_64\include\QtWidgets\QMainWindow \
@@ -903,6 +1090,11 @@ release\mainwindow.obj: ..\..\mainwindow.cpp ..\..\mainwindow.h \
 		E:\qt\6.5.3\msvc2019_64\include\QtWidgets\qstatusbar.h \
 		E:\qt\6.5.3\msvc2019_64\include\QtWidgets\QWidget \
 		..\..\Canvas.h \
+		E:\qt\6.5.3\msvc2019_64\include\QtCore\QVector \
+		E:\qt\6.5.3\msvc2019_64\include\QtCore\qvector.h \
+		E:\qt\6.5.3\msvc2019_64\include\QtGui\QPen \
+		E:\qt\6.5.3\msvc2019_64\include\QtGui\qpen.h \
+		E:\qt\6.5.3\msvc2019_64\include\QtGui\QColor \
 		E:\qt\6.5.3\msvc2019_64\include\QtWidgets\QTextEdit \
 		E:\qt\6.5.3\msvc2019_64\include\QtWidgets\qtextedit.h \
 		E:\qt\6.5.3\msvc2019_64\include\QtWidgets\qabstractscrollarea.h \
@@ -911,7 +1103,6 @@ release\mainwindow.obj: ..\..\mainwindow.cpp ..\..\mainwindow.h \
 		E:\qt\6.5.3\msvc2019_64\include\QtGui\qtextoption.h \
 		E:\qt\6.5.3\msvc2019_64\include\QtGui\qtextcursor.h \
 		E:\qt\6.5.3\msvc2019_64\include\QtGui\qtextformat.h \
-		E:\qt\6.5.3\msvc2019_64\include\QtGui\qpen.h \
 		E:\qt\6.5.3\msvc2019_64\include\QtWidgets\QToolBar \
 		E:\qt\6.5.3\msvc2019_64\include\QtWidgets\qtoolbar.h \
 		E:\qt\6.5.3\msvc2019_64\include\QtWidgets\QFileDialog \
@@ -925,7 +1116,18 @@ release\mainwindow.obj: ..\..\mainwindow.cpp ..\..\mainwindow.h \
 		E:\qt\6.5.3\msvc2019_64\include\QtWidgets\qdialog.h \
 		E:\qt\6.5.3\msvc2019_64\include\QtCore\QDebug \
 		E:\qt\6.5.3\msvc2019_64\include\QtWidgets\QMessageBox \
-		E:\qt\6.5.3\msvc2019_64\include\QtWidgets\qmessagebox.h
+		E:\qt\6.5.3\msvc2019_64\include\QtWidgets\qmessagebox.h \
+		E:\qt\6.5.3\msvc2019_64\include\QtWidgets\QSpinBox \
+		E:\qt\6.5.3\msvc2019_64\include\QtWidgets\qspinbox.h \
+		E:\qt\6.5.3\msvc2019_64\include\QtWidgets\qabstractspinbox.h \
+		E:\qt\6.5.3\msvc2019_64\include\QtGui\qvalidator.h \
+		E:\qt\6.5.3\msvc2019_64\include\QtCore\qregularexpression.h \
+		E:\qt\6.5.3\msvc2019_64\include\QtWidgets\QWidgetAction \
+		E:\qt\6.5.3\msvc2019_64\include\QtWidgets\qwidgetaction.h
+
+release\qrc_icons.obj: release\qrc_icons.cpp 
+
+release\moc_Canvas.obj: release\moc_Canvas.cpp 
 
 release\moc_mainwindow.obj: release\moc_mainwindow.cpp 
 

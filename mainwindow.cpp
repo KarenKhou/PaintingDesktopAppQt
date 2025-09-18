@@ -7,27 +7,52 @@
 #include <QFileDialog>
 #include <QDebug>
 #include <QMessageBox>
+#include <QSpinBox>
+#include <QWidgetAction>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
     Canvas * canvas = new Canvas(this);
-    canvas->setMinimumSize(200,200);
+    canvas->setMinimumSize(400,400);
     this->setCentralWidget(canvas);
 
     QMenuBar * menubar = this->menuBar();
     QMenu * colorMenu = menubar->addMenu(tr("&Color"));
 
-    QAction * redAction = new QAction(tr("Red"), this);
-    QAction * blueAction = new QAction(tr("Blue"), this);
 
-    connect(redAction,  &QAction::triggered, [=]{ canvas->selectColor(redAction); });
-    connect(blueAction, &QAction::triggered, [=]{ canvas->selectColor(blueAction); });
+    canvas->pinkAction = new QAction(QIcon(":pink.png"),tr("Pink"), this);
+    canvas->blueAction = new QAction(QIcon(":blue.png"),tr("Blue"), this);
+    connect(canvas->blueAction,  &QAction::triggered, [=]{ canvas->selectColor(canvas->blueAction); });
+    connect(canvas->pinkAction, &QAction::triggered, [=]{ canvas->selectColor(canvas->pinkAction); });
+    colorMenu->addAction(canvas->pinkAction);
+    colorMenu->addAction(canvas->blueAction);
+
+    QMenu * styleMenu = menubar-> addMenu(tr("Style"));
+    canvas->solidLine = new QAction (QIcon(":solid.png"),tr("Solid Line") , this);
+    canvas->dashLine = new QAction (QIcon(":dash.png"),tr("Dash Line") , this);
+    canvas->dotLine = new QAction (QIcon(":dot.png"),tr("Dot Line"), this);
+    connect(canvas->solidLine,  &QAction::triggered, [=]{ canvas->selectStyle(canvas->solidLine); });
+    connect(canvas->dashLine,  &QAction::triggered, [=]{ canvas->selectStyle(canvas->dashLine); });
+    connect(canvas->dotLine ,  &QAction::triggered, [=]{ canvas->selectStyle(canvas->dotLine ); });
+    styleMenu->addAction(canvas->solidLine);
+    styleMenu->addAction(canvas->dashLine);
+    styleMenu->addAction(canvas->dotLine);
 
 
-    colorMenu->addAction(redAction);
-    colorMenu->addAction(blueAction);
+    QMenu * widthMenu = menubar-> addMenu(tr("Width"));
+    QSpinBox *widthBox = new QSpinBox(this);
+    widthBox->setRange(2, 20);
+    widthBox->setValue(5);
+
+    QWidgetAction *spinAction = new QWidgetAction(this);
+    spinAction->setDefaultWidget(widthBox);
+    widthMenu->addAction(spinAction);
+
+    connect(widthBox, SIGNAL(valueChanged(int)), canvas,   SLOT(selectWidth(int)));
+
+
 
     this->statusBar();
 
