@@ -13,26 +13,32 @@ Canvas::Canvas(QWidget *parent)
     currentShapeType(ShapeType::Line)
 {}
 
+Canvas::~Canvas(){
+    for (auto shape : displayList){
+        delete shape;
+    }
+    displayList.clear();
+
+    delete currentShape;
+    currentShape = nullptr;
+}
+
 void Canvas::paintEvent(QPaintEvent * paintEvent){
     QWidget::paintEvent(paintEvent);
     QPainter painter(this);
 
-    // if (isDrawing && currentShape) {
-    //     painter.setPen(currentShape->pen);
-    //     painter.drawLine(currentShape->startPoint, currentShape->endPoint);
-    // }
+    if (isDrawing && currentShape) {
+        currentShape->draw(painter);
+    }
 
     for (auto shape :displayList){
         shape->draw(painter);
     }
 
-
-
 }
 
 void Canvas::mousePressEvent(QMouseEvent* mouseEvent){
     if (mouseEvent->button() == Qt::LeftButton) {
-        //currentShape = new Shape();
         QPen pen;
         pen.setColor(currentColor);
         pen.setStyle(currentStyle);
@@ -108,8 +114,6 @@ void Canvas::selectShape(QAction *shapeSelected) {
         currentShapeType = ShapeType::Ellipse;
     }
 }
-
-
 
 void Canvas::selectWidth(int width) {
     currentWidth = width;

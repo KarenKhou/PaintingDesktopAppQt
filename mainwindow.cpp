@@ -65,11 +65,35 @@ MainWindow::MainWindow(QWidget *parent)
     shapeMenu->addAction(canvas->rectAction);
     shapeMenu->addAction(canvas->ellipseAction);
 
+    QAction *selectAction = new QAction(QIcon(":select.png"), tr("Select Shape"), this);
+    selectAction->setCheckable(true);
+    shapeMenu->addAction(selectAction);
+
+
+
+
 
 
     this->statusBar();
 
 
+}
+
+void MainWindow::closeEvent(QCloseEvent *event){
+    std::cout<<"Quit Clicked"<<std::endl;
+    QMessageBox * messageBox = new QMessageBox(this);
+    messageBox->setWindowTitle("Confirm Action");
+    messageBox->setText("Do you want to continue?");
+    messageBox->setIcon(QMessageBox::Question);
+    messageBox->setStandardButtons(QMessageBox::Yes | QMessageBox::No);
+    messageBox->setDefaultButton(QMessageBox::No);
+    int ret = messageBox->exec();
+    if (ret == QMessageBox::Yes) {
+        this->close();
+        qDebug() << "User clicked YES";
+    } else {
+        qDebug() << "User clicked NO";
+    }
 }
 
 

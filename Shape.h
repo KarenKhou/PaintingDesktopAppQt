@@ -28,6 +28,7 @@ public:
     virtual ~Shape() = default;
 
     virtual void draw(QPainter &painter) const = 0;
+    //virtual bool contains(const QPoint &pt) const = 0;
 
 protected:
     QPen pen;
@@ -45,6 +46,10 @@ public:
         painter.setPen(pen);
         painter.drawLine(startPoint, endPoint);
     }
+
+    // bool contains(const QPoint &pt) const override{
+
+    // }
 };
 
 class Rectangle : public Shape{
