@@ -15,6 +15,7 @@ SOURCES += \
 
 HEADERS += \
     Canvas.h \
+    Shape.h \
     mainwindow.h
 
 FORMS += \

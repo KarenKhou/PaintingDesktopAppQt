@@ -50,7 +50,20 @@ MainWindow::MainWindow(QWidget *parent)
     spinAction->setDefaultWidget(widthBox);
     widthMenu->addAction(spinAction);
 
-    connect(widthBox, SIGNAL(valueChanged(int)), canvas,   SLOT(selectWidth(int)));
+    connect(widthBox, SIGNAL(valueChanged(int)), canvas, SLOT(selectWidth(int)));
+
+    QMenu *shapeMenu = menubar->addMenu(tr("Shape"));
+    canvas->lineAction = new QAction(tr("Line"), this);
+    canvas->rectAction = new QAction(tr("Rectangle"), this);
+    canvas->ellipseAction = new QAction(tr("Ellipse"), this);
+
+    connect(canvas->lineAction,    &QAction::triggered, [=]{ canvas->selectShape(canvas->lineAction); });
+    connect(canvas->rectAction,    &QAction::triggered, [=]{ canvas->selectShape(canvas->rectAction); });
+    connect(canvas->ellipseAction, &QAction::triggered, [=]{ canvas->selectShape(canvas->ellipseAction); });
+
+    shapeMenu->addAction(canvas->lineAction);
+    shapeMenu->addAction(canvas->rectAction);
+    shapeMenu->addAction(canvas->ellipseAction);
 
 
 
