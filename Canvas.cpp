@@ -9,7 +9,8 @@ Canvas::Canvas(QWidget *parent)
     isDrawing(false),
     currentColor(Qt::black),
     currentStyle(Qt::SolidLine),
-    currentWidth(5)
+    currentWidth(5),
+    currentShapeType(ShapeType::Line)
 {}
 
 void Canvas::paintEvent(QPaintEvent * paintEvent){
@@ -21,23 +22,8 @@ void Canvas::paintEvent(QPaintEvent * paintEvent){
     //     painter.drawLine(currentShape->startPoint, currentShape->endPoint);
     // }
 
-    for (auto shape :savedLines){
-        painter.setPen(shape->pen);
-
-        // painter.drawLine(shape->startPoint, shape->endPoint);
-        // painter.drawRect(QRect(shape->startPoint,shape->endPoint));
-
-        switch (shape->type) {
-        case Shape::Line:
-            painter.drawLine(shape->startPoint, shape->endPoint);
-            break;
-        case Shape::Rectangle:
-            painter.drawRect(QRect(shape->startPoint, shape->endPoint));
-            break;
-        case Shape::Ellipse:
-            painter.drawEllipse(QRect(shape->startPoint, shape->endPoint));
-            break;
-        }
+    for (auto shape :displayList){
+        shape->draw(painter);
     }
 
 
@@ -46,14 +32,34 @@ void Canvas::paintEvent(QPaintEvent * paintEvent){
 
 void Canvas::mousePressEvent(QMouseEvent* mouseEvent){
     if (mouseEvent->button() == Qt::LeftButton) {
-        currentShape = new Shape();
+        //currentShape = new Shape();
         QPen pen;
         pen.setColor(currentColor);
         pen.setStyle(currentStyle);
         pen.setWidth(currentWidth);
-        currentShape->startPoint = mouseEvent->pos();
-        currentShape->endPoint = mouseEvent->pos();
-        currentShape->pen = pen;
+        switch(currentShapeType){
+            case ShapeType::Line:
+                currentShape = new Line(
+                    pen,
+                    mouseEvent->pos(),
+                    mouseEvent->pos()
+                    );
+                 break;
+            case ShapeType::Rectangle:
+                currentShape = new Rectangle(
+                    pen,
+                    mouseEvent->pos(),
+                    mouseEvent->pos()
+                    );
+                 break;
+            case ShapeType::Ellipse:
+                currentShape = new Ellipse(
+                    pen,
+                    mouseEvent->pos(),
+                    mouseEvent->pos()
+                    );
+                 break;
+        }
         isDrawing = true;
         update();
     }
@@ -61,18 +67,17 @@ void Canvas::mousePressEvent(QMouseEvent* mouseEvent){
 
 void Canvas::mouseMoveEvent(QMouseEvent *mouseEvent) {
     if (isDrawing) {
-        currentShape->endPoint = mouseEvent->pos();
+        currentShape->setEndPoint(mouseEvent->pos());
         update();
     }
 }
 
 void Canvas::mouseReleaseEvent(QMouseEvent *mouseEvent) {
     if (mouseEvent->button() == Qt::LeftButton && isDrawing) {
-        currentShape->endPoint = mouseEvent->pos();
-        currentShape->type= currentShapeType;
+        currentShape->setEndPoint(mouseEvent->pos());
         isDrawing = false;
         update();
-        savedLines.push_back(currentShape);
+        displayList.push_back(currentShape);
     }
 }
 
@@ -96,11 +101,11 @@ void Canvas::selectStyle(QAction * styleSelected) {
 
 void Canvas::selectShape(QAction *shapeSelected) {
     if (shapeSelected == lineAction) {
-        currentShapeType = Shape::Line;
+        currentShapeType = ShapeType::Line;
     } else if (shapeSelected == rectAction) {
-        currentShapeType = Shape::Rectangle;
+        currentShapeType = ShapeType::Rectangle;
     } else if (shapeSelected == ellipseAction) {
-        currentShapeType = Shape::Ellipse;
+        currentShapeType = ShapeType::Ellipse;
     }
 }
 

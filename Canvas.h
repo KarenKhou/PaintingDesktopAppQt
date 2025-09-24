@@ -5,6 +5,7 @@
 #include <QVector>
 #include <QPen>
 #include <QColor>
+#include "Shape.h"
 
 //docu pr le pen stle https://doc.qt.io/qt-6/qt.html#PenStyle-enum
 using namespace std;
@@ -14,13 +15,6 @@ using namespace std;
 class Canvas: public QWidget {
     Q_OBJECT
 public:
-
-    struct Shape {
-        enum Type { Line, Rectangle, Ellipse } type;
-        QPoint startPoint;
-        QPoint endPoint;
-        QPen pen;
-    };
 
     Canvas(QWidget *parent);
 
@@ -41,12 +35,12 @@ protected:
 
 private:
     Shape * currentShape;
-    QVector<Shape * > savedLines;
+    QVector<Shape * > displayList;
     bool isDrawing;
     QColor currentColor;
     Qt::PenStyle currentStyle;
     int currentWidth;
-    Shape::Type currentShapeType;
+    ShapeType currentShapeType;
 
 public slots:
     void selectColor(QAction * colorAction);
