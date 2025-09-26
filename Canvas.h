@@ -44,11 +44,15 @@ private:
     Qt::PenStyle currentStyle;
     int currentWidth;
     ShapeType currentShapeType;
+    bool selectOption;
+    Shape * selectedShape;
+    bool objectSelected;
 
 public slots:
     void selectColor(QAction * colorAction);
     void selectStyle(QAction * colorAction);
     void selectWidth(int width);
     void selectShape(QAction * shapeSelected);
+    void setSelect();
 };
 #endif // CANVAS_H

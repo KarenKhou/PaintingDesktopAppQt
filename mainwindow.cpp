@@ -68,6 +68,8 @@ MainWindow::MainWindow(QWidget *parent)
     QAction *selectAction = new QAction(QIcon(":select.png"), tr("Select Shape"), this);
     selectAction->setCheckable(true);
     shapeMenu->addAction(selectAction);
+    connect(selectAction, SIGNAL(triggered()),canvas, SLOT(setSelect()) );
+
 
 
 
@@ -89,10 +91,11 @@ void MainWindow::closeEvent(QCloseEvent *event){
     messageBox->setDefaultButton(QMessageBox::No);
     int ret = messageBox->exec();
     if (ret == QMessageBox::Yes) {
-        this->close();
+        event->accept();
         qDebug() << "User clicked YES";
     } else {
         qDebug() << "User clicked NO";
+        event->ignore();
     }
 }
 

@@ -10,7 +10,10 @@ Canvas::Canvas(QWidget *parent)
     currentColor(Qt::black),
     currentStyle(Qt::SolidLine),
     currentWidth(5),
-    currentShapeType(ShapeType::Line)
+    currentShapeType(ShapeType::Line),
+    selectOption(false),
+    selectedShape(nullptr),
+    objectSelected(false)
 {}
 
 Canvas::~Canvas(){
@@ -18,8 +21,6 @@ Canvas::~Canvas(){
         delete shape;
     }
     displayList.clear();
-
-    delete currentShape;
     currentShape = nullptr;
 }
 
@@ -39,6 +40,19 @@ void Canvas::paintEvent(QPaintEvent * paintEvent){
 
 void Canvas::mousePressEvent(QMouseEvent* mouseEvent){
     if (mouseEvent->button() == Qt::LeftButton) {
+        if (selectOption){
+            for(auto shape : displayList){
+                if (shape->contains(mouseEvent->pos())){
+                    cout<<"object selected";
+                    selectedShape = shape;
+                    objectSelected = true;
+                    update();
+                    return;
+                }
+            }
+        }else{
+
+
         QPen pen;
         pen.setColor(currentColor);
         pen.setStyle(currentStyle);
@@ -69,21 +83,32 @@ void Canvas::mousePressEvent(QMouseEvent* mouseEvent){
         isDrawing = true;
         update();
     }
+    }
 }
 
 void Canvas::mouseMoveEvent(QMouseEvent *mouseEvent) {
     if (isDrawing) {
         currentShape->setEndPoint(mouseEvent->pos());
         update();
+    }else if(objectSelected){
+        selectedShape->move(mouseEvent->pos());
+        update();
     }
 }
 
 void Canvas::mouseReleaseEvent(QMouseEvent *mouseEvent) {
-    if (mouseEvent->button() == Qt::LeftButton && isDrawing) {
+    if (mouseEvent->button() ) {
+        // if(selectOption){
+        //     selectedShape = nullptr;
+        //     objectSelected = false;
+        //     return;
+        // }
+        if(Qt::LeftButton && isDrawing){
         currentShape->setEndPoint(mouseEvent->pos());
         isDrawing = false;
         update();
         displayList.push_back(currentShape);
+        }
     }
 }
 
@@ -92,6 +117,10 @@ void Canvas::selectColor(QAction * colorAction) {
         currentColor = QColor(254, 1, 154);
     } else if (colorAction == blueAction) {
         currentColor = Qt::blue;
+    }
+    if(objectSelected){
+        selectedShape->setColor(currentColor);
+        update();
     }
 }
 
@@ -102,6 +131,10 @@ void Canvas::selectStyle(QAction * styleSelected) {
         currentStyle = Qt::DashLine;
     } else if (styleSelected == dotLine) {
     currentStyle = Qt::DotLine;
+    }
+    if(objectSelected){
+        selectedShape->setStyle(currentStyle);
+        update();
     }
 }
 
@@ -117,5 +150,14 @@ void Canvas::selectShape(QAction *shapeSelected) {
 
 void Canvas::selectWidth(int width) {
     currentWidth = width;
+    if(objectSelected){
+        selectedShape->setWidth(currentWidth);
+        update();
+    }
+}
+
+void Canvas::setSelect(){
+    selectOption = !selectOption;
+    std::cout<<"select triggered"<<endl;
 }
 
