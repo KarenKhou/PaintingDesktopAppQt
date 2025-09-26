@@ -62,6 +62,9 @@ public:
     }
 
     bool contains(const QPoint &p) const override {
+        // QLineF line(startPoint, endPoint);
+        // qreal dist = line.distanceToPoint(point);
+        // return dist <= 5.0; // tolérance
         return false;
     }
 
@@ -114,13 +117,15 @@ class Ellipse : public Shape{
         painter.setPen(pen);
         painter.drawEllipse(QRect(startPoint, endPoint).normalized());    }
 
-    bool contains(const QPoint &p) const override {
-        return false;
+    bool contains(const QPoint& point) const override {
+        std::cout<<"hi"<<QRect(startPoint, endPoint).normalized().contains(point);
+        return QRect(startPoint, endPoint).normalized().contains(point);
     }
 
     void move(QPoint pos) override{
-        startPoint= pos;
-
+        QPoint dist = pos - startPoint;
+        startPoint += dist;
+        endPoint   += dist;
     }
 
     void resize() override{

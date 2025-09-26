@@ -98,11 +98,7 @@ void Canvas::mouseMoveEvent(QMouseEvent *mouseEvent) {
 
 void Canvas::mouseReleaseEvent(QMouseEvent *mouseEvent) {
     if (mouseEvent->button() ) {
-        // if(selectOption){
-        //     selectedShape = nullptr;
-        //     objectSelected = false;
-        //     return;
-        // }
+
         if(Qt::LeftButton && isDrawing){
         currentShape->setEndPoint(mouseEvent->pos());
         isDrawing = false;
