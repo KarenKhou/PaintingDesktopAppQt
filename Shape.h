@@ -42,6 +42,7 @@ public:
     virtual bool contains(const QPoint &pt) const = 0;
     virtual void move(QPoint pos) =0;
     virtual void resize()=0;
+    virtual void drawBounding(QPainter &painter) const = 0;
 
 
 protected:
@@ -77,6 +78,20 @@ public:
     void resize() override{
 
     }
+
+    void drawBounding(QPainter &painter) const override{
+        QPen p;
+        //p.setColor(QColor::Black)
+
+        const int size = 10;
+
+        QRectF r1(startPoint.x()-size/2, startPoint.y()-size/2, size, size);
+        QRectF r2(endPoint.x()-size/2,   endPoint.y()-size/2,   size, size);
+        painter.setPen(p);
+        painter.drawRect(r1);
+        painter.drawRect(r2);
+
+    }
 };
 
 class Rectangle : public Shape{
@@ -101,6 +116,23 @@ public:
     }
 
     void resize() override{
+
+    }
+    void drawBounding(QPainter &painter) const override{
+        QPen p;
+        //p.setColor(QColor::Black)
+
+        const int size = 10;
+
+        QRectF r1(startPoint.x()-size/2, startPoint.y()-size/2, size, size);
+        QRectF r2(endPoint.x()-size/2,   endPoint.y()-size/2,   size, size);
+        QRectF r3(endPoint.x()+size/2,   endPoint.y()+size/2,   size, size);
+        QRectF r4(endPoint.x()+size/2,   endPoint.y()+size/2,   size, size);
+        painter.setPen(p);
+        painter.drawRect(r1);
+        painter.drawRect(r2);
+        painter.drawRect(r3);
+        painter.drawRect(r4);
 
     }
 
@@ -128,6 +160,9 @@ class Ellipse : public Shape{
     }
 
     void resize() override{
+
+    }
+    void drawBounding(QPainter &painter) const override{
 
     }
 };

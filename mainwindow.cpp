@@ -9,6 +9,8 @@
 #include <QMessageBox>
 #include <QSpinBox>
 #include <QWidgetAction>
+#include <QToolButton>
+#include <QHBoxLayout>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -69,12 +71,6 @@ MainWindow::MainWindow(QWidget *parent)
     selectAction->setCheckable(true);
     shapeMenu->addAction(selectAction);
     connect(selectAction, SIGNAL(triggered()),canvas, SLOT(setSelect()) );
-
-
-
-
-
-
 
     this->statusBar();
 

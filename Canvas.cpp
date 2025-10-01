@@ -31,9 +31,15 @@ void Canvas::paintEvent(QPaintEvent * paintEvent){
     if (isDrawing && currentShape) {
         currentShape->draw(painter);
     }
+    if(selectOption){
+        if (selectedShape!=nullptr){
+            selectedShape->drawBounding(painter);
+        }
+    }
 
     for (auto shape :displayList){
         shape->draw(painter);
+
     }
 
 }
