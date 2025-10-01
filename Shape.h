@@ -61,23 +61,22 @@ public:
         painter.drawLine(startPoint, endPoint);
     }
 
-    bool contains(const QPoint &p) const override {
-        // QLineF line(startPoint, endPoint);
-        // qreal dist = line.distanceToPoint(point);
-        // return dist <= 5.0; // tolérance
-        return false;
+    bool contains(const QPoint &point) const override {
+        QPointF intersectPnt;
+        QLineF l(point.x()-10, point.y()-10, point.x()+10, point.y()+10);
+        QLineF l2(startPoint,endPoint);
+        return (l2.intersects(l, &intersectPnt)==QLineF::BoundedIntersection);
     }
 
     void move(QPoint pos) override{
-        startPoint= pos;
-
+        QPoint dist = pos - startPoint;
+        startPoint += dist;
+        endPoint   += dist;
     }
 
     void resize() override{
 
     }
-
-
 };
 
 class Rectangle : public Shape{
