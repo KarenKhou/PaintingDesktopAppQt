@@ -36,6 +36,7 @@ protected:
     void mouseMoveEvent(QMouseEvent *e) override;
     void mouseReleaseEvent(QMouseEvent *e) override;
 
+
 private:
     Shape * currentShape;
     QVector<Shape * > displayList;
@@ -47,6 +48,10 @@ private:
     bool selectOption;
     Shape * selectedShape;
     bool objectSelected;
+    QPoint lastPos{};
+    bool moving = false;
+    bool resizing = false;
+    int handleIndex =-1;
 
 public slots:
     void selectColor(QAction * colorAction);

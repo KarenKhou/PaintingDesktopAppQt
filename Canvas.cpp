@@ -33,7 +33,7 @@ void Canvas::paintEvent(QPaintEvent * paintEvent){
     }
     if(selectOption){
         if (selectedShape!=nullptr){
-            selectedShape->drawBounding(painter);
+            selectedShape->createSelectionHandles(painter);
         }
     }
 
@@ -45,12 +45,33 @@ void Canvas::paintEvent(QPaintEvent * paintEvent){
 }
 
 void Canvas::mousePressEvent(QMouseEvent* mouseEvent){
+    qDebug() << "Press at" << mouseEvent->pos();
+    qDebug() << "Move at" << mouseEvent->pos()
+             << " handleIndex=" << handleIndex
+             << " resizing=" << resizing
+             << " moving=" << moving;
+
     if (mouseEvent->button() == Qt::LeftButton) {
+            lastPos=mouseEvent->pos();
         if (selectOption){
             for(auto shape : displayList){
                 if (shape->contains(mouseEvent->pos())){
-                    cout<<"object selected";
                     selectedShape = shape;
+
+                    int h = selectedShape->handleSelected(mouseEvent->pos());
+                    if (h != -1) {
+                        resizing = true;
+                        handleIndex = h;
+                        qDebug() << "Resize started on handle" << h;
+
+                    } else {
+                        moving = true;
+                        lastPos = mouseEvent->pos();
+                        qDebug() << "Move started";
+
+                    }
+
+
                     objectSelected = true;
                     update();
                     return;
@@ -93,17 +114,43 @@ void Canvas::mousePressEvent(QMouseEvent* mouseEvent){
 }
 
 void Canvas::mouseMoveEvent(QMouseEvent *mouseEvent) {
+    qDebug() << "Press at" << mouseEvent->pos();
+    qDebug() << "Move at" << mouseEvent->pos()
+             << " handleIndex=" << handleIndex
+             << " resizing=" << resizing
+             << " moving=" << moving;
+
+    QPoint mousePos = mouseEvent->pos();
     if (isDrawing) {
-        currentShape->setEndPoint(mouseEvent->pos());
+        currentShape->setEndPoint(mousePos);
         update();
     }else if(objectSelected){
-        selectedShape->move(mouseEvent->pos());
+        if (resizing) {
+            selectedShape->resize(mousePos, handleIndex);
+            qDebug() << "Resizing handle" << handleIndex;
+
+        } else if (moving) {
+            QPoint delta = mousePos - lastPos;
+            selectedShape->move(delta);
+            lastPos = mousePos;
+            qDebug() << "Moving by" << delta;
+
+        }
         update();
     }
 }
 
 void Canvas::mouseReleaseEvent(QMouseEvent *mouseEvent) {
+    qDebug() << "Press at" << mouseEvent->pos();
+    qDebug() << "Move at" << mouseEvent->pos()
+             << " handleIndex=" << handleIndex
+             << " resizing=" << resizing
+             << " moving=" << moving;
+
     if (mouseEvent->button() ) {
+        moving = false;
+        resizing = false;
+        handleIndex=-1;
 
         if(Qt::LeftButton && isDrawing){
         currentShape->setEndPoint(mouseEvent->pos());
@@ -160,6 +207,5 @@ void Canvas::selectWidth(int width) {
 
 void Canvas::setSelect(){
     selectOption = !selectOption;
-    std::cout<<"select triggered"<<endl;
 }
 
