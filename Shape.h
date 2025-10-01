@@ -117,6 +117,7 @@ public:
     }
 };
 
+
 class Rectangle : public Shape{
 public:
     Rectangle(const QPen &p, QPoint start, QPoint end):
