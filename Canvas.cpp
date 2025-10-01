@@ -207,5 +207,9 @@ void Canvas::selectWidth(int width) {
 
 void Canvas::setSelect(){
     selectOption = !selectOption;
+    if (!selectOption){
+        selectedShape=nullptr;
+        objectSelected=false;
+    }
 }
 

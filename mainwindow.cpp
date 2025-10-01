@@ -16,6 +16,7 @@ MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
+    ui->setupUi(this);
     Canvas * canvas = new Canvas(this);
     canvas->setMinimumSize(800,800);
     this->setCentralWidget(canvas);
@@ -122,6 +123,45 @@ MainWindow::MainWindow(QWidget *parent)
     widthBoxToolbar->setToolTip("Change line width");
     toolbar->addWidget(widthBoxToolbar);
     connect(widthBoxToolbar, SIGNAL(valueChanged(int)), canvas, SLOT(selectWidth(int)));
+
+    //partie QT Designer optonelle
+
+    connect(ui->sliderWidth, &QSlider::valueChanged,
+            canvas, &Canvas::selectWidth);
+    ui->comboShape->addItem("Line");
+    ui->comboShape->addItem("Rectangle");
+    ui->comboShape->addItem("Ellipse");
+
+
+    connect(ui->comboShape, QOverload<int>::of(&QComboBox::currentIndexChanged),
+            this, [=](int index){
+                if(index == 0) canvas->selectShape(canvas->lineAction);
+                else if(index == 1) canvas->selectShape(canvas->rectAction);
+                else if(index == 2) canvas->selectShape(canvas->ellipseAction);
+            });
+
+
+
+    connect(ui->btnSolid, &QPushButton::clicked, [=]{
+        canvas->selectStyle(canvas->solidLine);
+    });
+    connect(ui->btnDash, &QPushButton::clicked, [=]{
+        canvas->selectStyle(canvas->dashLine);
+    });
+    connect(ui->btnDot, &QPushButton::clicked, [=]{
+        canvas->selectStyle(canvas->dotLine);
+    });
+
+    ui->btnSolid->setIcon(QIcon(":/solid.png"));
+    ui->btnSolid->setIconSize(QSize(32,32));
+
+    ui->btnDash->setIcon(QIcon(":/dash.png"));
+    ui->btnDash->setIconSize(QSize(32,32));
+
+    ui->btnDot->setIcon(QIcon(":/dot.png"));
+    ui->btnDot->setIconSize(QSize(32,32));
+
+
 
 
     this->statusBar();
