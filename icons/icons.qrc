@@ -5,5 +5,9 @@
         <file>dash.png</file>
         <file>dot.png</file>
         <file>solid.png</file>
+        <file>select.png</file>
+        <file>ellipse.png</file>
+        <file>line.png</file>
+        <file>rect.png</file>
     </qresource>
 </RCC>

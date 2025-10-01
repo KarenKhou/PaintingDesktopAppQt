@@ -17,7 +17,7 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     Canvas * canvas = new Canvas(this);
-    canvas->setMinimumSize(400,400);
+    canvas->setMinimumSize(800,800);
     this->setCentralWidget(canvas);
 
     QMenuBar * menubar = this->menuBar();
@@ -55,9 +55,9 @@ MainWindow::MainWindow(QWidget *parent)
     connect(widthBox, SIGNAL(valueChanged(int)), canvas, SLOT(selectWidth(int)));
 
     QMenu *shapeMenu = menubar->addMenu(tr("Shape"));
-    canvas->lineAction = new QAction(tr("Line"), this);
-    canvas->rectAction = new QAction(tr("Rectangle"), this);
-    canvas->ellipseAction = new QAction(tr("Ellipse"), this);
+    canvas->lineAction = new QAction(QIcon(":line.png"),tr("Line"), this);
+    canvas->rectAction = new QAction(QIcon(":rect.png"),tr("Rectangle"), this);
+    canvas->ellipseAction = new QAction(QIcon(":ellipse.png"),tr("Ellipse"), this);
 
     connect(canvas->lineAction,    &QAction::triggered, [=]{ canvas->selectShape(canvas->lineAction); });
     connect(canvas->rectAction,    &QAction::triggered, [=]{ canvas->selectShape(canvas->rectAction); });
@@ -69,8 +69,60 @@ MainWindow::MainWindow(QWidget *parent)
 
     QAction *selectAction = new QAction(QIcon(":select.png"), tr("Select Shape"), this);
     selectAction->setCheckable(true);
-    shapeMenu->addAction(selectAction);
-    connect(selectAction, SIGNAL(triggered()),canvas, SLOT(setSelect()) );
+
+    connect(selectAction, &QAction::triggered, canvas, &Canvas::setSelect);
+
+
+    QToolBar *toolbar = addToolBar(tr("Tools"));
+    toolbar->addAction(selectAction);
+
+    toolbar->addSeparator();
+
+    QAction *pinkToolAction = toolbar->addAction(QIcon(":pink.png"), tr("Pink"));
+    pinkToolAction->setToolTip("Select Pink color");
+    connect(pinkToolAction, &QAction::triggered, [=]{ canvas->selectColor(canvas->pinkAction); });
+
+    QAction *blueToolAction = toolbar->addAction(QIcon(":blue.png"), tr("Blue"));
+    blueToolAction->setToolTip("Select Blue color");
+    connect(blueToolAction, &QAction::triggered, [=]{ canvas->selectColor(canvas->blueAction); });
+
+    toolbar->addSeparator();
+
+    QAction *lineToolAction = toolbar->addAction(QIcon(":line.png"), tr("Line"));
+    lineToolAction->setToolTip("Draw Line");
+    connect(lineToolAction, &QAction::triggered, [=]{ canvas->selectShape(canvas->lineAction); });
+
+    QAction *rectToolAction = toolbar->addAction(QIcon(":rect.png"), tr("Rectangle"));
+    rectToolAction->setToolTip("Draw Rectangle");
+    connect(rectToolAction, &QAction::triggered, [=]{ canvas->selectShape(canvas->rectAction); });
+
+    QAction *ellipseToolAction = toolbar->addAction(QIcon(":ellipse.png"), tr("Ellipse"));
+    ellipseToolAction->setToolTip("Draw Ellipse");
+    connect(ellipseToolAction, &QAction::triggered, [=]{ canvas->selectShape(canvas->ellipseAction); });
+
+    toolbar->addSeparator();
+
+    QAction *solidToolAction = toolbar->addAction(QIcon(":solid.png"), tr("Solid Line"));
+    solidToolAction->setToolTip("Solid Line");
+    connect(solidToolAction, &QAction::triggered, [=]{ canvas->selectStyle(canvas->solidLine); });
+
+    QAction *dashToolAction = toolbar->addAction(QIcon(":dash.png"), tr("Dashed Line"));
+    dashToolAction->setToolTip("Dashed Line");
+    connect(dashToolAction, &QAction::triggered, [=]{ canvas->selectStyle(canvas->dashLine); });
+
+    QAction *dotToolAction = toolbar->addAction(QIcon(":dot.png"), tr("Dotted Line"));
+    dotToolAction->setToolTip("Dotted Line");
+    connect(dotToolAction, &QAction::triggered, [=]{ canvas->selectStyle(canvas->dotLine); });
+
+    toolbar->addSeparator();
+
+    QSpinBox *widthBoxToolbar = new QSpinBox(this);
+    widthBoxToolbar->setRange(2, 20);
+    widthBoxToolbar->setValue(5);
+    widthBoxToolbar->setToolTip("Change line width");
+    toolbar->addWidget(widthBoxToolbar);
+    connect(widthBoxToolbar, SIGNAL(valueChanged(int)), canvas, SLOT(selectWidth(int)));
+
 
     this->statusBar();
 
