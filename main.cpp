@@ -1,3 +1,5 @@
+//  Karen EL KHOURY
+
 #include "mainwindow.h"
 
 #include <QApplication>

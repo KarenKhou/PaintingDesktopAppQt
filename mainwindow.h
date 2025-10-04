@@ -1,3 +1,5 @@
+//  Karen EL KHOURY
+
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 

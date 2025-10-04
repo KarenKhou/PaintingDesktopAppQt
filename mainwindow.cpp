@@ -1,3 +1,5 @@
+//  Karen EL KHOURY
+
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "Canvas.h"
@@ -11,6 +13,8 @@
 #include <QWidgetAction>
 #include <QToolButton>
 #include <QHBoxLayout>
+#include <QActionGroup>
+
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -24,21 +28,40 @@ MainWindow::MainWindow(QWidget *parent)
     QMenuBar * menubar = this->menuBar();
     QMenu * colorMenu = menubar->addMenu(tr("&Color"));
 
+    auto *colorGroup = new QActionGroup(this);
 
     canvas->pinkAction = new QAction(QIcon(":pink.png"),tr("Pink"), this);
     canvas->blueAction = new QAction(QIcon(":blue.png"),tr("Blue"), this);
-    connect(canvas->blueAction,  &QAction::triggered, [=]{ canvas->selectColor(canvas->blueAction); });
-    connect(canvas->pinkAction, &QAction::triggered, [=]{ canvas->selectColor(canvas->pinkAction); });
+
+    colorGroup->addAction(canvas->pinkAction);
+    colorGroup->addAction(canvas->blueAction);
+    connect(colorGroup, &QActionGroup::triggered, canvas, &Canvas::selectColor);
+
     colorMenu->addAction(canvas->pinkAction);
     colorMenu->addAction(canvas->blueAction);
+
+    canvas->lineAction    = new QAction(QIcon(":line.png"), tr("Line"), this);
+    canvas->rectAction    = new QAction(QIcon(":rect.png"), tr("Rectangle"), this);
+    canvas->ellipseAction = new QAction(QIcon(":ellipse.png"), tr("Ellipse"), this);
+
+    auto *shapeGroup = new QActionGroup(this);
+    shapeGroup->addAction(canvas->lineAction);
+    shapeGroup->addAction(canvas->rectAction);
+    shapeGroup->addAction(canvas->ellipseAction);
+
+    connect(shapeGroup, &QActionGroup::triggered, canvas, &Canvas::selectShape);
 
     QMenu * styleMenu = menubar-> addMenu(tr("Style"));
     canvas->solidLine = new QAction (QIcon(":solid.png"),tr("Solid Line") , this);
     canvas->dashLine = new QAction (QIcon(":dash.png"),tr("Dash Line") , this);
     canvas->dotLine = new QAction (QIcon(":dot.png"),tr("Dot Line"), this);
-    connect(canvas->solidLine,  &QAction::triggered, [=]{ canvas->selectStyle(canvas->solidLine); });
-    connect(canvas->dashLine,  &QAction::triggered, [=]{ canvas->selectStyle(canvas->dashLine); });
-    connect(canvas->dotLine ,  &QAction::triggered, [=]{ canvas->selectStyle(canvas->dotLine ); });
+    QActionGroup *styleGroup = new QActionGroup(this);
+    styleGroup->setExclusive(true);
+    styleGroup->addAction(canvas->solidLine);
+    styleGroup->addAction(canvas->dashLine);
+    styleGroup->addAction(canvas->dotLine);
+
+    connect(styleGroup, &QActionGroup::triggered,canvas, &Canvas::selectStyle);
     styleMenu->addAction(canvas->solidLine);
     styleMenu->addAction(canvas->dashLine);
     styleMenu->addAction(canvas->dotLine);

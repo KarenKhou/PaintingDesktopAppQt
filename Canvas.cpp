@@ -1,3 +1,5 @@
+//  Karen EL KHOURY
+
 #include "Canvas.h"
 #include <QPainter>
 #include <QMouseEvent>

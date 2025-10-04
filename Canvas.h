@@ -1,3 +1,5 @@
+//  Karen EL KHOURY
+
 #ifndef CANVAS_H
 #define CANVAS_H
 
