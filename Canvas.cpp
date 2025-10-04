@@ -6,6 +6,11 @@
 #include <QAction>
 #include <QColor>
 
+#include "line.h"
+#include "rectangle.h"
+#include "ellipse.h"
+
+
 Canvas::Canvas(QWidget *parent)
     : QWidget(parent),
     isDrawing(false),

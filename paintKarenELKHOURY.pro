@@ -10,13 +10,19 @@ CONFIG += c++17
 
 SOURCES += \
     Canvas.cpp \
+    ellipse.cpp \
+    line.cpp \
     main.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    rectangle.cpp
 
 HEADERS += \
     Canvas.h \
     Shape.h \
-    mainwindow.h
+    ellipse.h \
+    line.h \
+    mainwindow.h \
+    rectangle.h
 
 FORMS += \
     mainwindow.ui

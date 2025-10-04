@@ -8,7 +8,6 @@
 #include <QPen>
 #include <QColor>
 #include "Shape.h"
-#include <iostream>
 
 //docu pr le pen stle https://doc.qt.io/qt-6/qt.html#PenStyle-enum
 using namespace std;
