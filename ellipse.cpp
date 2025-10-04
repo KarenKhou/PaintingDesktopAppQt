@@ -9,7 +9,26 @@ void Ellipse::draw(QPainter &painter) const{
     painter.drawEllipse(QRect(startPoint, endPoint).normalized());    }
 
 bool Ellipse::contains(const QPoint& point) const {
-    return QRect(startPoint, endPoint).normalized().contains(point);
+    QRectF rect(startPoint, endPoint);
+    rect = rect.normalized();
+
+    // ellipse center
+    double cx = rect.center().x();
+    double cy = rect.center().y();
+
+    // half width and half height
+    double a = rect.width() / 2.0;
+    double b = rect.height() / 2.0;
+
+    // point coordinates
+    double x = point.x();
+    double y = point.y();
+
+    // ellipse equation
+    double value = ((x - cx) * (x - cx)) / (a * a)
+                   + ((y - cy) * (y - cy)) / (b * b);
+
+    return value <= 1.0; // inside ellipse
 }
 
 void Ellipse::resize(const QPoint &newPos, int handleIndex){
