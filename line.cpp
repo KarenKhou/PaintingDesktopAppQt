@@ -1,3 +1,5 @@
+// Karen EL KHOURY
+
 #include "line.h"
 
 Line::Line(const QPen &p, QPoint start, QPoint end):

@@ -1,3 +1,5 @@
+// Karen EL KHOURY
+
 #include "ellipse.h"
 
 Ellipse::Ellipse(const QPen &p, QPoint start, QPoint end):

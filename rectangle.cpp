@@ -1,3 +1,5 @@
+// Karen EL KHOURY
+
 #include "rectangle.h"
 
 Rectangle::Rectangle(const QPen &p, QPoint start, QPoint end):

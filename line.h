@@ -1,3 +1,4 @@
+// Karen EL KHOURY
 #ifndef LINE_H
 #define LINE_H
 #include "Shape.h"
