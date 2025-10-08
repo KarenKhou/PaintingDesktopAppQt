@@ -32,7 +32,7 @@ void Line::createSelectionHandles(QPainter &painter) {
     QPen p;
     //p.setColor(QColor::Black)
 
-    const int size = 16;
+    const int size = 20;
 
     QRectF r1(startPoint.x()-size/2, startPoint.y()-size/2, size, size);
     QRectF r2(endPoint.x()-size/2,   endPoint.y()-size/2,   size, size);

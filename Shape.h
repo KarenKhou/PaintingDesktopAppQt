@@ -46,12 +46,10 @@ public:
     int handleSelected(const QPoint &p)const{
         int i=0;
         for (auto handle : selectionHandle){
-            QRectF bigger = handle.adjusted(-4, -4, 4, 4); // 4 px de tolérance
-            if (bigger.contains(p)) {
+            if (handle.contains(p)) {
                 return i;
             }
             i++;
-
         }
         return -1;
     }

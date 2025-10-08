@@ -38,7 +38,7 @@ void Rectangle::resize(const QPoint &newPos, int handleIndex)  {
 void Rectangle::createSelectionHandles(QPainter &painter)  {
     selectionHandle.clear();
 
-    const int size = 16;
+    const int size = 20;
     QRectF b(startPoint, endPoint);
     b = b.normalized();
 
